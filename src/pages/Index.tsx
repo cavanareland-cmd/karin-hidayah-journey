@@ -1,16 +1,12 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import RencanaIbadahSection from "@/components/RencanaIbadahSection";
-import BookingSection from "@/components/BookingSection";
+import ServiceIconsSection from "@/components/ServiceIconsSection";
+import ArrangementSection from "@/components/ArrangementSection";
 import PrayerTimeSection from "@/components/PrayerTimeSection";
-import SpiritualServicesSection from "@/components/SpiritualServicesSection";
-import TahallulSection from "@/components/TahallulSection";
-import UmrahPackageSection from "@/components/UmrahPackageSection";
-import ZamzamSection from "@/components/ZamzamSection";
-import YoutubeSection from "@/components/YoutubeSection";
-import DzikirSection from "@/components/DzikirSection";
-import PanduanIbadahSection from "@/components/PanduanIbadahSection";
-import BantuanSection from "@/components/BantuanSection";
+import HajjPackagesSection from "@/components/HajjPackagesSection";
+import HighlightsSection from "@/components/HighlightsSection";
+import ExploreSection from "@/components/ExploreSection";
+import FeaturedTourSection from "@/components/FeaturedTourSection";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 
@@ -23,38 +19,26 @@ const Index = () => {
         {/* Hero Section */}
         <HeroSection />
         
-        {/* Rencana Ibadahku */}
-        <RencanaIbadahSection />
+        {/* Service Icons Row */}
+        <ServiceIconsSection />
         
-        {/* Booking Cards */}
-        <BookingSection />
+        {/* Arrangement Section */}
+        <ArrangementSection />
         
         {/* Prayer Times */}
         <PrayerTimeSection />
         
-        {/* Spiritual Services */}
-        <SpiritualServicesSection />
+        {/* Hajj Packages */}
+        <HajjPackagesSection />
         
-        {/* Tahallul Service Info */}
-        <TahallulSection />
+        {/* Highlights Services */}
+        <HighlightsSection />
         
-        {/* Umrah Packages */}
-        <UmrahPackageSection />
+        {/* Explore Destinations */}
+        <ExploreSection />
         
-        {/* Zamzam Water */}
-        <ZamzamSection />
-        
-        {/* YouTube Videos */}
-        <YoutubeSection />
-        
-        {/* Dzikir */}
-        <DzikirSection />
-        
-        {/* Panduan Ibadah */}
-        <PanduanIbadahSection />
-        
-        {/* Bantuan CTA */}
-        <BantuanSection />
+        {/* Featured Tour */}
+        <FeaturedTourSection />
       </main>
       
       <Footer />
