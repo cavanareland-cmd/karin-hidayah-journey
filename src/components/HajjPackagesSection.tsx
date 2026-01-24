@@ -1,10 +1,12 @@
 import { MapPin, Plane } from "lucide-react";
+import { Link } from "react-router-dom";
 import hajjImg1 from "@/assets/hajj-package-1.jpg";
 import hajjImg2 from "@/assets/hajj-package-2.jpg";
 import hajjImg3 from "@/assets/hajj-package-3.jpg";
 
 const packages = [
   {
+    id: 1,
     image: hajjImg1,
     title: "Hajj Packge 10 Days",
     price: "$650",
@@ -17,6 +19,7 @@ const packages = [
     ],
   },
   {
+    id: 2,
     image: hajjImg2,
     title: "Hajj Packge 10 Days",
     price: "$650",
@@ -29,6 +32,7 @@ const packages = [
     ],
   },
   {
+    id: 3,
     image: hajjImg3,
     title: "Hajj Packge 10 Days",
     price: "$650",
@@ -47,17 +51,18 @@ const HajjPackagesSection = () => {
     <section className="py-8 px-4 lg:px-8">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {packages.map((pkg, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl overflow-hidden border border-border hover:shadow-lg transition-shadow"
+          {packages.map((pkg) => (
+            <Link
+              key={pkg.id}
+              to={`/package/${pkg.id}`}
+              className="bg-white rounded-2xl overflow-hidden border border-border hover:shadow-lg transition-shadow group"
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={pkg.image}
                   alt={pkg.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
 
@@ -86,11 +91,11 @@ const HajjPackagesSection = () => {
                 </div>
 
                 {/* Button */}
-                <button className="w-full bg-secondary text-secondary-foreground py-3 rounded-xl font-medium hover:bg-secondary/90 transition-colors">
+                <div className="w-full bg-secondary text-secondary-foreground py-3 rounded-xl font-medium text-center group-hover:bg-secondary/90 transition-colors">
                   Book Now
-                </button>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
