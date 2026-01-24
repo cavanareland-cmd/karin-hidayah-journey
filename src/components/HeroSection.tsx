@@ -1,56 +1,61 @@
-import heroBg from "@/assets/hero-bg.jpg";
+import { Search } from "lucide-react";
+import heroBg from "@/assets/hero-adventure.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative">
-      <div className="relative h-[400px] md:h-[500px] overflow-hidden rounded-b-3xl md:rounded-b-[3rem]">
+    <section className="relative mx-4 lg:mx-8 mt-4">
+      <div className="relative h-[200px] md:h-[240px] overflow-hidden rounded-2xl">
         {/* Background Image */}
         <img
           src={heroBg}
-          alt="Kaaba at night"
+          alt="Adventure destination"
           className="absolute inset-0 w-full h-full object-cover"
         />
         
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 gradient-dark" />
+        <div className="absolute inset-0 bg-gradient-to-r from-secondary/80 via-secondary/50 to-transparent" />
         
         {/* Content */}
-        <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-12">
-          <div className="max-w-lg">
-            <h1 className="font-serif text-4xl md:text-6xl text-white leading-tight mb-2">
-              Oleh - oleh
+        <div className="relative z-10 h-full flex items-center justify-between p-6 md:p-10">
+          <div className="max-w-md">
+            <h1 className="font-serif text-2xl md:text-4xl text-white font-bold leading-tight mb-2">
+              Your next adventure
             </h1>
-            <h1 className="font-serif text-4xl md:text-6xl text-white leading-tight">
-              Haji dan Umrah
+            <h1 className="font-serif text-2xl md:text-4xl text-white font-bold leading-tight mb-3">
+              starts here
             </h1>
+            <p className="text-white/80 text-sm md:text-base">
+              Unique trips to the most fascinating places on Earth
+            </p>
+          </div>
+
+          {/* Search Bar */}
+          <div className="hidden md:flex items-center">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search destinations..."
+                className="w-64 lg:w-80 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full py-3 px-5 pr-12 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/30"
+              />
+              <button className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                <Search className="w-4 h-4 text-white" />
+              </button>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Decorative Gold Pattern - Top Corners */}
-        <div className="absolute top-0 left-0 w-32 h-32 opacity-60 pointer-events-none">
-          <svg viewBox="0 0 100 100" className="w-full h-full">
-            <defs>
-              <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#C9A962" />
-                <stop offset="100%" stopColor="#E5C882" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M0,0 Q50,0 50,50 Q0,50 0,0 Z"
-              fill="url(#goldGrad)"
-              opacity="0.3"
-            />
-          </svg>
-        </div>
-        
-        <div className="absolute top-0 right-0 w-32 h-32 opacity-60 pointer-events-none">
-          <svg viewBox="0 0 100 100" className="w-full h-full">
-            <path
-              d="M100,0 Q50,0 50,50 Q100,50 100,0 Z"
-              fill="url(#goldGrad)"
-              opacity="0.3"
-            />
-          </svg>
+      {/* Mobile Search */}
+      <div className="md:hidden mt-4">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search destinations..."
+            className="w-full bg-muted border border-border rounded-full py-3 px-5 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+          />
+          <button className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 bg-primary rounded-full flex items-center justify-center">
+            <Search className="w-4 h-4 text-primary-foreground" />
+          </button>
         </div>
       </div>
     </section>
