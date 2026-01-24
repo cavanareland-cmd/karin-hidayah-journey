@@ -8,7 +8,7 @@ const Navbar = () => {
   const menuItems = [
     { label: "Beranda", href: "/", isRoute: true },
     { label: "Paket Umrah", href: "/umrah-packages", isRoute: true },
-    { label: "Paket Haji", href: "#paket-haji", isRoute: false },
+    { label: "Paket Haji", href: "/hajj-packages", isRoute: true },
     { label: "Tentang Kami", href: "#tentang", isRoute: false },
     { label: "Galleri", href: "#galleri", isRoute: false },
     { label: "Kontak", href: "#kontak", isRoute: false },
