@@ -9,6 +9,7 @@ import UmrahPackages from "./pages/UmrahPackages";
 import HajjPackages from "./pages/HajjPackages";
 import AboutUs from "./pages/AboutUs";
 import Gallery from "./pages/Gallery";
+import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/hajj-packages" element={<HajjPackages />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/package/:id" element={<PackageDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

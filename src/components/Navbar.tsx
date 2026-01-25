@@ -11,8 +11,8 @@ const Navbar = () => {
     { label: "Paket Haji", href: "/hajj-packages", isRoute: true },
     { label: "Tentang Kami", href: "/about-us", isRoute: true },
     { label: "Galleri", href: "/gallery", isRoute: true },
+    { label: "Blog", href: "/blog", isRoute: true },
     { label: "Kontak", href: "#kontak", isRoute: false },
-    { label: "Blog", href: "#blog", isRoute: false },
   ];
 
   return (
