@@ -12,7 +12,7 @@ const Navbar = () => {
     { label: "Tentang Kami", href: "/about-us", isRoute: true },
     { label: "Galleri", href: "/gallery", isRoute: true },
     { label: "Blog", href: "/blog", isRoute: true },
-    { label: "Kontak", href: "#kontak", isRoute: false },
+    { label: "Kontak", href: "/contact", isRoute: true },
   ];
 
   return (
