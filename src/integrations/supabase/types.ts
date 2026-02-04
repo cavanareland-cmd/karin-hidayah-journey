@@ -14,7 +14,522 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      about_us_content: {
+        Row: {
+          content: string | null
+          created_at: string
+          id: string
+          image_url: string | null
+          is_active: boolean
+          order_index: number
+          section_key: string
+          stats: Json | null
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          order_index?: number
+          section_key: string
+          stats?: Json | null
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          order_index?: number
+          section_key?: string
+          stats?: Json | null
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      blog_posts: {
+        Row: {
+          author_name: string | null
+          category: string | null
+          content: string | null
+          created_at: string
+          excerpt: string | null
+          id: string
+          image_url: string | null
+          is_featured: boolean
+          is_published: boolean
+          published_at: string | null
+          slug: string
+          title: string
+          updated_at: string
+          views: number | null
+        }
+        Insert: {
+          author_name?: string | null
+          category?: string | null
+          content?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean
+          is_published?: boolean
+          published_at?: string | null
+          slug: string
+          title: string
+          updated_at?: string
+          views?: number | null
+        }
+        Update: {
+          author_name?: string | null
+          category?: string | null
+          content?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean
+          is_published?: boolean
+          published_at?: string | null
+          slug?: string
+          title?: string
+          updated_at?: string
+          views?: number | null
+        }
+        Relationships: []
+      }
+      contact_messages: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          is_read: boolean
+          message: string
+          name: string
+          phone: string | null
+          replied_at: string | null
+          subject: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          is_read?: boolean
+          message: string
+          name: string
+          phone?: string | null
+          replied_at?: string | null
+          subject?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          is_read?: boolean
+          message?: string
+          name?: string
+          phone?: string | null
+          replied_at?: string | null
+          subject?: string | null
+        }
+        Relationships: []
+      }
+      gallery_items: {
+        Row: {
+          category: string | null
+          created_at: string
+          description: string | null
+          embed_url: string | null
+          id: string
+          image_url: string
+          is_active: boolean
+          media_type: string | null
+          order_index: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          embed_url?: string | null
+          id?: string
+          image_url: string
+          is_active?: boolean
+          media_type?: string | null
+          order_index?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          embed_url?: string | null
+          id?: string
+          image_url?: string
+          is_active?: boolean
+          media_type?: string | null
+          order_index?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      hajj_packages: {
+        Row: {
+          category: string
+          created_at: string
+          departure_year: number | null
+          description: string | null
+          duration_days: number
+          facilities: Json | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          is_featured: boolean
+          itinerary: Json | null
+          name: string
+          price: number
+          updated_at: string
+          visa_type: string | null
+          waiting_period: string | null
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          departure_year?: number | null
+          description?: string | null
+          duration_days: number
+          facilities?: Json | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          is_featured?: boolean
+          itinerary?: Json | null
+          name: string
+          price: number
+          updated_at?: string
+          visa_type?: string | null
+          waiting_period?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          departure_year?: number | null
+          description?: string | null
+          duration_days?: number
+          facilities?: Json | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          is_featured?: boolean
+          itinerary?: Json | null
+          name?: string
+          price?: number
+          updated_at?: string
+          visa_type?: string | null
+          waiting_period?: string | null
+        }
+        Relationships: []
+      }
+      highlight_services: {
+        Row: {
+          created_at: string
+          description: string | null
+          icon_name: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          link_url: string | null
+          order_index: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          icon_name?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          link_url?: string | null
+          order_index?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          icon_name?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          link_url?: string | null
+          order_index?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      prayer_times_settings: {
+        Row: {
+          asr_azan: string | null
+          asr_time: string | null
+          chourouk_time: string | null
+          created_at: string
+          fajr_azan: string | null
+          fajr_time: string | null
+          id: string
+          is_active: boolean
+          isha_azan: string | null
+          isha_time: string | null
+          jumah_azan: string | null
+          jumah_time: string | null
+          location_name: string
+          maghrib_azan: string | null
+          maghrib_time: string | null
+          updated_at: string
+          zuhr_azan: string | null
+          zuhr_time: string | null
+        }
+        Insert: {
+          asr_azan?: string | null
+          asr_time?: string | null
+          chourouk_time?: string | null
+          created_at?: string
+          fajr_azan?: string | null
+          fajr_time?: string | null
+          id?: string
+          is_active?: boolean
+          isha_azan?: string | null
+          isha_time?: string | null
+          jumah_azan?: string | null
+          jumah_time?: string | null
+          location_name: string
+          maghrib_azan?: string | null
+          maghrib_time?: string | null
+          updated_at?: string
+          zuhr_azan?: string | null
+          zuhr_time?: string | null
+        }
+        Update: {
+          asr_azan?: string | null
+          asr_time?: string | null
+          chourouk_time?: string | null
+          created_at?: string
+          fajr_azan?: string | null
+          fajr_time?: string | null
+          id?: string
+          is_active?: boolean
+          isha_azan?: string | null
+          isha_time?: string | null
+          jumah_azan?: string | null
+          jumah_time?: string | null
+          location_name?: string
+          maghrib_azan?: string | null
+          maghrib_time?: string | null
+          updated_at?: string
+          zuhr_azan?: string | null
+          zuhr_time?: string | null
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          category: string | null
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          name: string
+          price: number
+          stock: number | null
+          updated_at: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          name: string
+          price: number
+          stock?: number | null
+          updated_at?: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          name?: string
+          price?: number
+          stock?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      service_icons: {
+        Row: {
+          created_at: string
+          icon_name: string
+          id: string
+          is_active: boolean
+          label: string
+          order_index: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          icon_name: string
+          id?: string
+          is_active?: boolean
+          label: string
+          order_index?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          icon_name?: string
+          id?: string
+          is_active?: boolean
+          label?: string
+          order_index?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          key: string
+          updated_at: string
+          value: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          key: string
+          updated_at?: string
+          value?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          key?: string
+          updated_at?: string
+          value?: string | null
+        }
+        Relationships: []
+      }
+      team_members: {
+        Row: {
+          bio: string | null
+          created_at: string
+          id: string
+          image_url: string | null
+          is_active: boolean
+          name: string
+          order_index: number
+          position: string
+          updated_at: string
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          name: string
+          order_index?: number
+          position: string
+          updated_at?: string
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          name?: string
+          order_index?: number
+          position?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      umrah_packages: {
+        Row: {
+          category: string
+          created_at: string
+          departure_date: string | null
+          description: string | null
+          duration_days: number
+          facilities: Json | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          is_featured: boolean
+          itinerary: Json | null
+          name: string
+          price: number
+          rating: number | null
+          total_reviews: number | null
+          updated_at: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          departure_date?: string | null
+          description?: string | null
+          duration_days: number
+          facilities?: Json | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          is_featured?: boolean
+          itinerary?: Json | null
+          name: string
+          price: number
+          rating?: number | null
+          total_reviews?: number | null
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          departure_date?: string | null
+          description?: string | null
+          duration_days?: number
+          facilities?: Json | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          is_featured?: boolean
+          itinerary?: Json | null
+          name?: string
+          price?: number
+          rating?: number | null
+          total_reviews?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
