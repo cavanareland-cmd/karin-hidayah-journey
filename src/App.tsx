@@ -13,6 +13,21 @@ import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
+// Admin Pages
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminUmrahPackages from "./pages/admin/AdminUmrahPackages";
+import AdminHajjPackages from "./pages/admin/AdminHajjPackages";
+import AdminBlog from "./pages/admin/AdminBlog";
+import AdminGallery from "./pages/admin/AdminGallery";
+import AdminMessages from "./pages/admin/AdminMessages";
+import AdminSettings from "./pages/admin/AdminSettings";
+import AdminServiceIcons from "./pages/admin/AdminServiceIcons";
+import AdminPrayerTimes from "./pages/admin/AdminPrayerTimes";
+import AdminHighlights from "./pages/admin/AdminHighlights";
+import AdminProducts from "./pages/admin/AdminProducts";
+import AdminAbout from "./pages/admin/AdminAbout";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -30,6 +45,22 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/package/:id" element={<PackageDetail />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/umrah-packages" element={<AdminUmrahPackages />} />
+          <Route path="/admin/hajj-packages" element={<AdminHajjPackages />} />
+          <Route path="/admin/blog" element={<AdminBlog />} />
+          <Route path="/admin/gallery" element={<AdminGallery />} />
+          <Route path="/admin/messages" element={<AdminMessages />} />
+          <Route path="/admin/settings" element={<AdminSettings />} />
+          <Route path="/admin/service-icons" element={<AdminServiceIcons />} />
+          <Route path="/admin/prayer-times" element={<AdminPrayerTimes />} />
+          <Route path="/admin/highlights" element={<AdminHighlights />} />
+          <Route path="/admin/products" element={<AdminProducts />} />
+          <Route path="/admin/about" element={<AdminAbout />} />
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
