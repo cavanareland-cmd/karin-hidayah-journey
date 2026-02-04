@@ -38,6 +38,55 @@ function useRealtimeQuery<T>(
   });
 }
 
+// Homepage Settings
+export function useHomepageSettings() {
+  return useRealtimeQuery<Tables<"homepage_settings">[]>(
+    ["homepage_settings"],
+    "homepage_settings",
+    async () => {
+      const { data, error } = await supabase
+        .from("homepage_settings")
+        .select("*")
+        .eq("is_active", true);
+      if (error) throw error;
+      return data || [];
+    }
+  );
+}
+
+// Navigation Menu
+export function useNavigationMenu() {
+  return useRealtimeQuery<Tables<"navigation_menu">[]>(
+    ["navigation_menu"],
+    "navigation_menu",
+    async () => {
+      const { data, error } = await supabase
+        .from("navigation_menu")
+        .select("*")
+        .eq("is_active", true)
+        .order("order_index");
+      if (error) throw error;
+      return data || [];
+    }
+  );
+}
+
+// Footer Settings
+export function useFooterSettings() {
+  return useRealtimeQuery<Tables<"footer_settings">[]>(
+    ["footer_settings"],
+    "footer_settings",
+    async () => {
+      const { data, error } = await supabase
+        .from("footer_settings")
+        .select("*")
+        .eq("is_active", true);
+      if (error) throw error;
+      return data || [];
+    }
+  );
+}
+
 // Service Icons
 export function useServiceIcons() {
   return useRealtimeQuery<Tables<"service_icons">[]>(

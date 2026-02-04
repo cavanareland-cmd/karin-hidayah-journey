@@ -1,14 +1,27 @@
 import { Search } from "lucide-react";
-import heroBg from "@/assets/hero-adventure.jpg";
+import { Link } from "react-router-dom";
+import { useHomepageSettings } from "@/hooks/useSupabaseData";
+import heroBgDefault from "@/assets/hero-adventure.jpg";
 
 const HeroSection = () => {
+  const { data: settings } = useHomepageSettings();
+  
+  const heroSettings = settings?.find((s) => s.section_key === "hero");
+  
+  const title = heroSettings?.title || "Your next adventure";
+  const subtitle = heroSettings?.subtitle || "starts here";
+  const description = heroSettings?.description || "Unique trips to the most fascinating places on Earth";
+  const buttonText = heroSettings?.button_text || "Lihat Paket";
+  const buttonLink = heroSettings?.button_link || "/umrah-packages";
+  const heroImage = heroSettings?.image_url || heroBgDefault;
+
   return (
     <section className="relative mx-4 lg:mx-8 mt-4">
       {/* Desktop & Tablet Hero */}
       <div className="relative h-[280px] sm:h-[350px] md:h-[420px] lg:h-[500px] xl:h-[560px] overflow-hidden rounded-2xl md:rounded-3xl">
         {/* Background Image */}
         <img
-          src={heroBg}
+          src={heroImage}
           alt="Adventure destination"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -20,14 +33,24 @@ const HeroSection = () => {
         <div className="relative z-10 h-full flex items-center justify-between p-6 md:p-10 lg:p-16">
           <div className="max-w-lg lg:max-w-xl">
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-bold leading-tight mb-2 md:mb-4">
-              Your next adventure
+              {title}
             </h1>
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-bold leading-tight mb-4 md:mb-6">
-              starts here
+              {subtitle}
             </h1>
-            <p className="text-white/80 text-sm sm:text-base md:text-lg lg:text-xl max-w-md">
-              Unique trips to the most fascinating places on Earth
+            <p className="text-white/80 text-sm sm:text-base md:text-lg lg:text-xl max-w-md mb-6">
+              {description}
             </p>
+            
+            {/* CTA Button */}
+            {buttonText && (
+              <Link
+                to={buttonLink}
+                className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-3 rounded-full font-medium transition-colors"
+              >
+                {buttonText}
+              </Link>
+            )}
           </div>
 
           {/* Search Bar - Desktop */}

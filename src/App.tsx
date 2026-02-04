@@ -21,6 +21,7 @@ import Register from "./pages/auth/Register";
 // Admin Pages
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminHomepage from "./pages/admin/AdminHomepage";
 import AdminUmrahPackages from "./pages/admin/AdminUmrahPackages";
 import AdminHajjPackages from "./pages/admin/AdminHajjPackages";
 import AdminBlog from "./pages/admin/AdminBlog";
@@ -59,6 +60,7 @@ const App = () => (
             {/* Admin Routes */}
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/homepage" element={<AdminHomepage />} />
             <Route path="/admin/umrah-packages" element={<AdminUmrahPackages />} />
             <Route path="/admin/hajj-packages" element={<AdminHajjPackages />} />
             <Route path="/admin/blog" element={<AdminBlog />} />
