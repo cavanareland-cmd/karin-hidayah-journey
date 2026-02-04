@@ -1,9 +1,24 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X, User } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Menu, X, User, LogOut, Loader2 } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, isLoading, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
 
   const menuItems = [
     { label: "Beranda", href: "/", isRoute: true },
@@ -49,13 +64,47 @@ const Navbar = () => {
 
           {/* Right Actions */}
           <div className="flex items-center gap-3">
-            <button className="hidden lg:flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
-              <User className="w-4 h-4" />
-              Masuk
-            </button>
-            <button className="hidden lg:block bg-primary text-primary-foreground px-5 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
-              Daftar
-            </button>
+            {isLoading ? (
+              <Loader2 className="w-4 h-4 animate-spin text-muted-foreground" />
+            ) : user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="hidden lg:flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
+                  <User className="w-4 h-4" />
+                  <span className="max-w-[120px] truncate">
+                    {user.user_metadata?.full_name || user.email?.split("@")[0]}
+                  </span>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile" className="cursor-pointer">
+                      <User className="w-4 h-4 mr-2" />
+                      Profil Saya
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer text-destructive">
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Keluar
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <>
+                <Link 
+                  to="/login"
+                  className="hidden lg:flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                >
+                  <User className="w-4 h-4" />
+                  Masuk
+                </Link>
+                <Link 
+                  to="/register"
+                  className="hidden lg:block bg-primary text-primary-foreground px-5 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
+                >
+                  Daftar
+                </Link>
+              </>
+            )}
 
             {/* Mobile Menu Button */}
             <button
@@ -94,13 +143,46 @@ const Navbar = () => {
               )
             )}
             <div className="pt-3 border-t border-border space-y-2">
-              <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-border hover:bg-muted transition-colors">
-                <User className="w-4 h-4" />
-                <span className="text-sm font-medium">Masuk</span>
-              </button>
-              <button className="w-full bg-primary text-primary-foreground text-sm py-2.5 rounded-full font-medium">
-                Daftar
-              </button>
+              {user ? (
+                <>
+                  <Link
+                    to="/profile"
+                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-border hover:bg-muted transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <User className="w-4 h-4" />
+                    <span className="text-sm font-medium">Profil Saya</span>
+                  </Link>
+                  <button 
+                    onClick={() => {
+                      handleSignOut();
+                      setIsOpen(false);
+                    }}
+                    className="w-full flex items-center justify-center gap-2 bg-destructive text-destructive-foreground text-sm py-2.5 rounded-full font-medium"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Keluar
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-border hover:bg-muted transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <User className="w-4 h-4" />
+                    <span className="text-sm font-medium">Masuk</span>
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="w-full block text-center bg-primary text-primary-foreground text-sm py-2.5 rounded-full font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Daftar
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
