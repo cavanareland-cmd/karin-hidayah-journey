@@ -5,17 +5,15 @@ import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Search, Calendar, User, ArrowRight, Clock } from "lucide-react";
+import { useBlogPosts } from "@/hooks/useSupabaseData";
 import makkahImg from "@/assets/makkah-landscape.jpg";
-import umrahImg from "@/assets/umrah-package.jpg";
-import hajjImg from "@/assets/hajj-package-1.jpg";
-import zamzamImg from "@/assets/zamzam-water.jpg";
-import tahallulImg from "@/assets/tahallul-service.jpg";
-import olehImg from "@/assets/oleh-oleh.jpg";
 
 const Blog = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Semua");
+  const { data: articles, isLoading } = useBlogPosts();
 
   const categories = [
     "Semua",
@@ -26,92 +24,26 @@ const Blog = () => {
     "Oleh-oleh",
   ];
 
-  const articles = [
-    {
-      id: 1,
-      title: "10 Tips Persiapan Umrah untuk Pemula yang Wajib Diketahui",
-      excerpt:
-        "Panduan lengkap persiapan umrah dari mulai dokumen, kesehatan, hingga perlengkapan yang harus dibawa.",
-      category: "Persiapan",
-      author: "Tim Karin Hidayah",
-      date: "20 Jan 2024",
-      readTime: "8 menit",
-      image: makkahImg,
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Panduan Lengkap Tata Cara Umrah dari Awal hingga Akhir",
-      excerpt:
-        "Pelajari tata cara umrah yang benar sesuai sunnah, mulai dari ihram hingga tahallul.",
-      category: "Ibadah",
-      author: "Ustadz Ahmad Fauzi",
-      date: "18 Jan 2024",
-      readTime: "12 menit",
-      image: umrahImg,
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "Menjaga Kesehatan Selama Perjalanan Haji dan Umrah",
-      excerpt:
-        "Tips menjaga stamina dan kesehatan tubuh selama menjalankan ibadah di Tanah Suci.",
-      category: "Kesehatan",
-      author: "Dr. Siti Aminah",
-      date: "15 Jan 2024",
-      readTime: "6 menit",
-      image: hajjImg,
-      featured: false,
-    },
-    {
-      id: 4,
-      title: "Keutamaan Air Zamzam dan Cara Membawanya Pulang",
-      excerpt:
-        "Mengenal keistimewaan air zamzam dan tips membawa air zamzam ke tanah air dengan aman.",
-      category: "Tips Perjalanan",
-      author: "Tim Karin Hidayah",
-      date: "12 Jan 2024",
-      readTime: "5 menit",
-      image: zamzamImg,
-      featured: false,
-    },
-    {
-      id: 5,
-      title: "Doa-doa Mustajab yang Dibaca Saat Umrah dan Haji",
-      excerpt:
-        "Kumpulan doa-doa yang dianjurkan dibaca di berbagai tempat suci selama ibadah.",
-      category: "Ibadah",
-      author: "Ustadz Ahmad Fauzi",
-      date: "10 Jan 2024",
-      readTime: "10 menit",
-      image: tahallulImg,
-      featured: false,
-    },
-    {
-      id: 6,
-      title: "Rekomendasi Oleh-oleh Khas Makkah dan Madinah",
-      excerpt:
-        "Daftar oleh-oleh populer yang wajib dibeli saat berkunjung ke Tanah Suci.",
-      category: "Oleh-oleh",
-      author: "Tim Karin Hidayah",
-      date: "8 Jan 2024",
-      readTime: "7 menit",
-      image: olehImg,
-      featured: false,
-    },
-  ];
-
-  const filteredArticles = articles.filter((article) => {
+  const filteredArticles = (articles || []).filter((article) => {
     const matchesSearch =
       article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      article.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+      (article.excerpt || "").toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory =
       selectedCategory === "Semua" || article.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
-  const featuredArticles = filteredArticles.filter((a) => a.featured);
-  const regularArticles = filteredArticles.filter((a) => !a.featured);
+  const featuredArticles = filteredArticles.filter((a) => a.is_featured);
+  const regularArticles = filteredArticles.filter((a) => !a.is_featured);
+
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return "";
+    return new Date(dateString).toLocaleDateString("id-ID", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -168,8 +100,29 @@ const Blog = () => {
         </div>
       </section>
 
+      {/* Loading State */}
+      {isLoading && (
+        <section className="py-12 md:py-16">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="bg-card rounded-xl overflow-hidden border border-border/50">
+                  <Skeleton className="aspect-[16/10] w-full" />
+                  <div className="p-5 space-y-3">
+                    <Skeleton className="h-4 w-20" />
+                    <Skeleton className="h-6 w-full" />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-3/4" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Featured Articles */}
-      {featuredArticles.length > 0 && (
+      {!isLoading && featuredArticles.length > 0 && (
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4">
             <h2 className="text-2xl font-bold text-foreground mb-8">
@@ -179,12 +132,12 @@ const Blog = () => {
               {featuredArticles.map((article) => (
                 <Link
                   key={article.id}
-                  to={`/blog/${article.id}`}
+                  to={`/blog/${article.slug}`}
                   className="group relative rounded-2xl overflow-hidden bg-card border border-border/50 hover:shadow-xl transition-all duration-300"
                 >
                   <div className="aspect-[16/9] overflow-hidden">
                     <img
-                      src={article.image}
+                      src={article.image_url || makkahImg}
                       alt={article.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
@@ -203,15 +156,11 @@ const Blog = () => {
                     <div className="flex items-center gap-4 text-white/70 text-sm">
                       <span className="flex items-center gap-1">
                         <User className="w-4 h-4" />
-                        {article.author}
+                        {article.author_name}
                       </span>
                       <span className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
-                        {article.date}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
-                        {article.readTime}
+                        {formatDate(article.published_at)}
                       </span>
                     </div>
                   </div>
@@ -223,69 +172,71 @@ const Blog = () => {
       )}
 
       {/* All Articles */}
-      <section className="py-12 md:py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-foreground mb-8">
-            Semua Artikel
-          </h2>
+      {!isLoading && (
+        <section className="py-12 md:py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <h2 className="text-2xl font-bold text-foreground mb-8">
+              Semua Artikel
+            </h2>
 
-          {filteredArticles.length === 0 ? (
-            <div className="text-center py-16">
-              <p className="text-muted-foreground text-lg">
-                Tidak ada artikel yang ditemukan untuk "{searchQuery}"
-              </p>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {(regularArticles.length > 0 ? regularArticles : filteredArticles).map(
-                (article) => (
-                  <Link
-                    key={article.id}
-                    to={`/blog/${article.id}`}
-                    className="group bg-card rounded-xl overflow-hidden border border-border/50 hover:shadow-lg transition-all duration-300"
-                  >
-                    <div className="aspect-[16/10] overflow-hidden">
-                      <img
-                        src={article.image}
-                        alt={article.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="p-5">
-                      <Badge
-                        variant="secondary"
-                        className="mb-3 bg-secondary/10 text-secondary-foreground"
-                      >
-                        {article.category}
-                      </Badge>
-                      <h3 className="font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                        {article.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm line-clamp-2 mb-4">
-                        {article.excerpt}
-                      </p>
-                      <div className="flex items-center justify-between text-sm text-muted-foreground">
-                        <span className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          {article.date}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Clock className="w-4 h-4" />
-                          {article.readTime}
-                        </span>
+            {filteredArticles.length === 0 ? (
+              <div className="text-center py-16">
+                <p className="text-muted-foreground text-lg">
+                  {searchQuery ? `Tidak ada artikel yang ditemukan untuk "${searchQuery}"` : "Belum ada artikel yang dipublikasikan"}
+                </p>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {(regularArticles.length > 0 ? regularArticles : filteredArticles).map(
+                  (article) => (
+                    <Link
+                      key={article.id}
+                      to={`/blog/${article.slug}`}
+                      className="group bg-card rounded-xl overflow-hidden border border-border/50 hover:shadow-lg transition-all duration-300"
+                    >
+                      <div className="aspect-[16/10] overflow-hidden">
+                        <img
+                          src={article.image_url || makkahImg}
+                          alt={article.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
                       </div>
-                      <div className="mt-4 flex items-center gap-2 text-primary font-medium text-sm group-hover:gap-3 transition-all">
-                        Baca Selengkapnya
-                        <ArrowRight className="w-4 h-4" />
+                      <div className="p-5">
+                        <Badge
+                          variant="secondary"
+                          className="mb-3 bg-secondary/10 text-secondary-foreground"
+                        >
+                          {article.category}
+                        </Badge>
+                        <h3 className="font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                          {article.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm line-clamp-2 mb-4">
+                          {article.excerpt}
+                        </p>
+                        <div className="flex items-center justify-between text-sm text-muted-foreground">
+                          <span className="flex items-center gap-1">
+                            <Calendar className="w-4 h-4" />
+                            {formatDate(article.published_at)}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-4 h-4" />
+                            {article.views || 0} views
+                          </span>
+                        </div>
+                        <div className="mt-4 flex items-center gap-2 text-primary font-medium text-sm group-hover:gap-3 transition-all">
+                          Baca Selengkapnya
+                          <ArrowRight className="w-4 h-4" />
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                )
-              )}
-            </div>
-          )}
-        </div>
-      </section>
+                    </Link>
+                  )
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Newsletter CTA */}
       <section className="py-16 bg-gradient-to-r from-primary to-primary/80">

@@ -7,10 +7,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { useSiteSettings, submitContactMessage } from "@/hooks/useSupabaseData";
 import makkahLandscape from "@/assets/makkah-landscape.jpg";
 
 const Contact = () => {
   const { toast } = useToast();
+  const { data: settings } = useSiteSettings();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,6 +21,11 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const whatsappNumber = settings?.whatsapp_number || "6281234567890";
+  const companyPhone = settings?.company_phone || "+62 812 3456 7890";
+  const companyEmail = settings?.company_email || "info@karinhidayah.com";
+  const companyAddress = settings?.company_address || "Jl. Masjid Raya No. 123, Jakarta Selatan";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -29,39 +36,47 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      await submitContactMessage(formData);
+      
+      toast({
+        title: "Pesan Terkirim!",
+        description: "Terima kasih telah menghubungi kami. Tim kami akan segera merespons.",
+      });
 
-    toast({
-      title: "Pesan Terkirim!",
-      description: "Terima kasih telah menghubungi kami. Tim kami akan segera merespons.",
-    });
-
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    });
-    setIsSubmitting(false);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      toast({
+        title: "Gagal Mengirim",
+        description: "Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
     {
       icon: MapPin,
       title: "Alamat Kantor",
-      details: ["Jl. Masjid Raya No. 123", "Jakarta Selatan, 12345", "Indonesia"],
+      details: companyAddress.split(","),
     },
     {
       icon: Phone,
       title: "Telepon",
-      details: ["+62 812 3456 7890", "+62 21 1234 5678"],
+      details: [companyPhone],
     },
     {
       icon: Mail,
       title: "Email",
-      details: ["info@karinhidayah.com", "booking@karinhidayah.com"],
+      details: [companyEmail],
     },
     {
       icon: Clock,
@@ -246,7 +261,7 @@ const Contact = () => {
                     </div>
                   </div>
                   <a
-                    href="https://wa.me/6281234567890?text=Halo%20Karin%20Hidayah%20Tour,%20saya%20ingin%20bertanya%20tentang%20paket%20umrah/haji"
+                    href={`https://wa.me/${whatsappNumber}?text=Halo%20Karin%20Hidayah%20Tour,%20saya%20ingin%20bertanya%20tentang%20paket%20umrah/haji`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full bg-white text-green-600 py-3 rounded-xl font-semibold text-center hover:bg-white/90 transition-colors"

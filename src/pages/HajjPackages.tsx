@@ -4,113 +4,50 @@ import { MapPin, Plane, Calendar, Users, Star, Filter, ChevronDown } from "lucid
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
-import hajjImg1 from "@/assets/hajj-package-1.jpg";
-import hajjImg2 from "@/assets/hajj-package-2.jpg";
-import hajjImg3 from "@/assets/hajj-package-3.jpg";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useHajjPackages, useSiteSettings } from "@/hooks/useSupabaseData";
 import makkahImg from "@/assets/makkah-landscape.jpg";
-
-const hajjPackages = [
-  {
-    id: 101,
-    image: hajjImg1,
-    title: "Haji Reguler 40 Hari",
-    price: "$8,500",
-    originalPrice: "$9,200",
-    duration: "40 Hari",
-    rating: 4.9,
-    reviews: 256,
-    departure: "Dzulhijjah 1445",
-    quota: "45 Seats",
-    highlights: ["Hotel Bintang 4", "Makkah 15 Malam", "Madinah 8 Malam"],
-    category: "regular",
-  },
-  {
-    id: 102,
-    image: hajjImg2,
-    title: "Haji Plus 25 Hari",
-    price: "$12,500",
-    originalPrice: "$14,000",
-    duration: "25 Hari",
-    rating: 5.0,
-    reviews: 189,
-    departure: "Dzulhijjah 1445",
-    quota: "30 Seats",
-    highlights: ["Hotel Bintang 5", "Dekat Masjidil Haram", "Private Transport"],
-    category: "plus",
-  },
-  {
-    id: 103,
-    image: hajjImg3,
-    title: "Haji Furoda 15 Hari",
-    price: "$18,000",
-    originalPrice: "$20,000",
-    duration: "15 Hari",
-    rating: 5.0,
-    reviews: 124,
-    departure: "Dzulhijjah 1445",
-    quota: "20 Seats",
-    highlights: ["Visa Furoda", "Hotel Premium", "Tanpa Antrian"],
-    category: "furoda",
-  },
-  {
-    id: 104,
-    image: makkahImg,
-    title: "Haji VIP Executive 12 Hari",
-    price: "$25,000",
-    originalPrice: "$28,000",
-    duration: "12 Hari",
-    rating: 5.0,
-    reviews: 67,
-    departure: "Dzulhijjah 1445",
-    quota: "10 Seats",
-    highlights: ["Suite Room", "Personal Guide", "First Class Flight"],
-    category: "vip",
-  },
-  {
-    id: 105,
-    image: hajjImg1,
-    title: "Haji Reguler Ekonomis 45 Hari",
-    price: "$7,200",
-    originalPrice: "$8,000",
-    duration: "45 Hari",
-    rating: 4.7,
-    reviews: 312,
-    departure: "Dzulhijjah 1445",
-    quota: "50 Seats",
-    highlights: ["Hotel Bintang 3", "Hemat Budget", "Full Bimbingan"],
-    category: "regular",
-  },
-  {
-    id: 106,
-    image: hajjImg2,
-    title: "Haji Plus Premium 30 Hari",
-    price: "$15,500",
-    originalPrice: "$17,000",
-    duration: "30 Hari",
-    rating: 4.9,
-    reviews: 98,
-    departure: "Dzulhijjah 1445",
-    quota: "25 Seats",
-    highlights: ["Hotel Bintang 5", "Maktab Terbaik", "Catering Premium"],
-    category: "plus",
-  },
-];
+import hajjImg1 from "@/assets/hajj-package-1.jpg";
 
 const categories = [
   { id: "all", label: "Semua Paket" },
-  { id: "regular", label: "Reguler" },
-  { id: "plus", label: "Haji Plus" },
-  { id: "furoda", label: "Furoda" },
-  { id: "vip", label: "VIP" },
+  { id: "Reguler", label: "Reguler" },
+  { id: "Plus", label: "Haji Plus" },
+  { id: "Furoda", label: "Furoda" },
+  { id: "VIP", label: "VIP" },
 ];
 
 const HajjPackages = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [sortBy, setSortBy] = useState("popular");
+  const { data: packages, isLoading } = useHajjPackages();
+  const { data: settings } = useSiteSettings();
+
+  const whatsappNumber = settings?.whatsapp_number || "6281234567890";
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(price);
+  };
 
   const filteredPackages = activeCategory === "all" 
-    ? hajjPackages 
-    : hajjPackages.filter(pkg => pkg.category === activeCategory);
+    ? (packages || [])
+    : (packages || []).filter(pkg => pkg.category === activeCategory);
+
+  const sortedPackages = [...filteredPackages].sort((a, b) => {
+    switch (sortBy) {
+      case "price-low":
+        return a.price - b.price;
+      case "price-high":
+        return b.price - a.price;
+      default:
+        return 0;
+    }
+  });
 
   return (
     <div className="min-h-screen bg-background">
@@ -168,7 +105,6 @@ const HajjPackages = () => {
                   <option value="popular">Paling Populer</option>
                   <option value="price-low">Harga Terendah</option>
                   <option value="price-high">Harga Tertinggi</option>
-                  <option value="rating">Rating Tertinggi</option>
                 </select>
                 <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none text-muted-foreground" />
               </div>
@@ -182,91 +118,113 @@ const HajjPackages = () => {
         <div className="container mx-auto">
           <div className="mb-6">
             <p className="text-muted-foreground">
-              Menampilkan <span className="font-semibold text-foreground">{filteredPackages.length}</span> paket haji
+              Menampilkan <span className="font-semibold text-foreground">{sortedPackages.length}</span> paket haji
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPackages.map((pkg) => (
-              <Link
-                key={pkg.id}
-                to={`/package/${pkg.id}`}
-                className="bg-card rounded-2xl overflow-hidden border border-border hover:shadow-xl transition-all duration-300 group"
-              >
-                {/* Image */}
-                <div className="relative h-52 overflow-hidden">
-                  <img
-                    src={pkg.image}
-                    alt={pkg.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  {/* Badge */}
-                  <div className="absolute top-3 left-3">
-                    <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full uppercase">
-                      {pkg.category}
-                    </span>
-                  </div>
-                  {/* Rating */}
-                  <div className="absolute top-3 right-3 flex items-center gap-1 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full">
-                    <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
-                    <span className="text-xs font-semibold">{pkg.rating}</span>
-                    <span className="text-xs text-muted-foreground">({pkg.reviews})</span>
+          {isLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="bg-card rounded-2xl overflow-hidden border border-border">
+                  <Skeleton className="h-52 w-full" />
+                  <div className="p-5 space-y-3">
+                    <Skeleton className="h-6 w-3/4" />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-10 w-full" />
                   </div>
                 </div>
+              ))}
+            </div>
+          ) : sortedPackages.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-muted-foreground text-lg">Belum ada paket haji yang tersedia</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {sortedPackages.map((pkg) => {
+                const facilities = (pkg.facilities as string[]) || [];
+                
+                return (
+                  <Link
+                    key={pkg.id}
+                    to={`/package/${pkg.id}`}
+                    className="bg-card rounded-2xl overflow-hidden border border-border hover:shadow-xl transition-all duration-300 group"
+                  >
+                    {/* Image */}
+                    <div className="relative h-52 overflow-hidden">
+                      <img
+                        src={pkg.image_url || hajjImg1}
+                        alt={pkg.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      {/* Badge */}
+                      <div className="absolute top-3 left-3">
+                        <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full uppercase">
+                          {pkg.category}
+                        </span>
+                      </div>
+                      {pkg.visa_type && (
+                        <div className="absolute top-3 right-3 flex items-center gap-1 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full">
+                          <span className="text-xs font-semibold">{pkg.visa_type}</span>
+                        </div>
+                      )}
+                    </div>
 
-                {/* Content */}
-                <div className="p-5">
-                  <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                    {pkg.title}
-                  </h3>
+                    {/* Content */}
+                    <div className="p-5">
+                      <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                        {pkg.name}
+                      </h3>
 
-                  {/* Info Grid */}
-                  <div className="grid grid-cols-2 gap-3 mb-4">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Calendar className="w-4 h-4 text-primary" />
-                      <span>{pkg.duration}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Plane className="w-4 h-4 text-primary" />
-                      <span>{pkg.departure}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Users className="w-4 h-4 text-primary" />
-                      <span>{pkg.quota}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <MapPin className="w-4 h-4 text-primary" />
-                      <span>Makkah & Madinah</span>
-                    </div>
-                  </div>
+                      {/* Info Grid */}
+                      <div className="grid grid-cols-2 gap-3 mb-4">
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <Calendar className="w-4 h-4 text-primary" />
+                          <span>{pkg.duration_days} Hari</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <Plane className="w-4 h-4 text-primary" />
+                          <span>{pkg.departure_year || "Tahun Ini"}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <Users className="w-4 h-4 text-primary" />
+                          <span>{pkg.waiting_period || "Kuota Tersedia"}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <MapPin className="w-4 h-4 text-primary" />
+                          <span>Makkah & Madinah</span>
+                        </div>
+                      </div>
 
-                  {/* Highlights */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {pkg.highlights.slice(0, 3).map((highlight, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2 py-1 bg-secondary/50 text-secondary-foreground text-xs rounded-md"
-                      >
-                        {highlight}
-                      </span>
-                    ))}
-                  </div>
+                      {/* Highlights */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {facilities.slice(0, 3).map((facility, idx) => (
+                          <span
+                            key={idx}
+                            className="px-2 py-1 bg-secondary/50 text-secondary-foreground text-xs rounded-md"
+                          >
+                            {facility}
+                          </span>
+                        ))}
+                      </div>
 
-                  {/* Price & CTA */}
-                  <div className="flex items-center justify-between pt-4 border-t border-border">
-                    <div>
-                      <p className="text-xs text-muted-foreground line-through">{pkg.originalPrice}</p>
-                      <p className="text-xl font-bold text-primary">{pkg.price}</p>
-                      <p className="text-xs text-muted-foreground">/person</p>
+                      {/* Price & CTA */}
+                      <div className="flex items-center justify-between pt-4 border-t border-border">
+                        <div>
+                          <p className="text-xl font-bold text-primary">{formatPrice(pkg.price)}</p>
+                          <p className="text-xs text-muted-foreground">/orang</p>
+                        </div>
+                        <div className="px-5 py-2.5 bg-primary text-primary-foreground rounded-xl font-medium text-sm group-hover:bg-primary/90 transition-colors">
+                          Pesan Sekarang
+                        </div>
+                      </div>
                     </div>
-                    <div className="px-5 py-2.5 bg-primary text-primary-foreground rounded-xl font-medium text-sm group-hover:bg-primary/90 transition-colors">
-                      Book Now
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
 
@@ -304,7 +262,7 @@ const HajjPackages = () => {
             Tim kami siap membantu Anda memahami perbedaan paket dan menemukan yang sesuai dengan kebutuhan Anda
           </p>
           <a
-            href="https://wa.me/6281234567890"
+            href={`https://wa.me/${whatsappNumber}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 text-white rounded-xl font-medium hover:bg-green-600 transition-colors"

@@ -1,8 +1,13 @@
 import { MessageCircle } from "lucide-react";
+import { useSiteSettings } from "@/hooks/useSupabaseData";
 
 const WhatsAppFloat = () => {
+  const { data: settings } = useSiteSettings();
+  
+  const whatsappNumber = settings?.whatsapp_number || "6281234567890";
+
   const handleClick = () => {
-    window.open("https://wa.me/6281234567890", "_blank");
+    window.open(`https://wa.me/${whatsappNumber}`, "_blank");
   };
 
   return (
