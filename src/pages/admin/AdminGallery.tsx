@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import AdminLayout from "@/components/admin/AdminLayout";
+import ImageUpload from "@/components/admin/ImageUpload";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,7 +16,7 @@ import {
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Pencil, Trash2, Loader2, Image, Video } from "lucide-react";
+import { Plus, Pencil, Trash2, Loader2, Image as ImageIcon, Video } from "lucide-react";
 
 interface GalleryItem {
   id: string;
@@ -222,16 +223,13 @@ const AdminGallery = () => {
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="image_url">URL Gambar/Thumbnail</Label>
-                  <Input
-                    id="image_url"
-                    value={formData.image_url}
-                    onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
-                    placeholder="https://..."
-                    required
-                  />
-                </div>
+                <ImageUpload
+                  label="Gambar/Thumbnail"
+                  value={formData.image_url}
+                  onChange={(url) => setFormData({ ...formData, image_url: url })}
+                  folder="gallery"
+                  aspectRatio="square"
+                />
 
                 {formData.media_type === "video" && (
                   <div className="space-y-2">
@@ -296,7 +294,7 @@ const AdminGallery = () => {
         ) : items.length === 0 ? (
           <Card>
             <CardContent className="text-center py-12 text-muted-foreground">
-              <Image className="w-12 h-12 mx-auto mb-4 opacity-50" />
+              <ImageIcon className="w-12 h-12 mx-auto mb-4 opacity-50" />
               Belum ada item galeri. Klik "Tambah Item" untuk menambahkan.
             </CardContent>
           </Card>

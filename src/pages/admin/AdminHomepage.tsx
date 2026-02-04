@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import AdminLayout from "@/components/admin/AdminLayout";
+import ImageUpload from "@/components/admin/ImageUpload";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { Save, Image, Type, Link, Menu, Layout, Globe } from "lucide-react";
+import { Save, Type, Menu, Layout, Globe } from "lucide-react";
 import type { Tables } from "@/integrations/supabase/types";
 
 type HomepageSetting = Tables<"homepage_settings">;
@@ -369,20 +370,13 @@ const AdminHomepage = () => {
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label className="flex items-center gap-2">
-                    <Image className="w-4 h-4" />
-                    URL Gambar Hero
-                  </Label>
-                  <Input
-                    value={heroImageUrl}
-                    onChange={(e) => setHeroImageUrl(e.target.value)}
-                    placeholder="https://example.com/hero.jpg"
-                  />
-                  {heroImageUrl && (
-                    <img src={heroImageUrl} alt="Hero Preview" className="mt-2 h-40 object-cover rounded-lg" />
-                  )}
-                </div>
+                <ImageUpload
+                  label="Gambar Hero Banner"
+                  value={heroImageUrl}
+                  onChange={setHeroImageUrl}
+                  folder="hero"
+                  aspectRatio="wide"
+                />
 
                 <Button onClick={handleSaveHero} disabled={updateHomepageMutation.isPending}>
                   <Save className="w-4 h-4 mr-2" />
@@ -420,20 +414,13 @@ const AdminHomepage = () => {
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label className="flex items-center gap-2">
-                    <Image className="w-4 h-4" />
-                    URL Logo
-                  </Label>
-                  <Input
-                    value={logoImageUrl}
-                    onChange={(e) => setLogoImageUrl(e.target.value)}
-                    placeholder="https://example.com/logo.png"
-                  />
-                  {logoImageUrl && (
-                    <img src={logoImageUrl} alt="Logo Preview" className="mt-2 h-20 object-contain" />
-                  )}
-                </div>
+                <ImageUpload
+                  label="Logo"
+                  value={logoImageUrl}
+                  onChange={setLogoImageUrl}
+                  folder="logo"
+                  aspectRatio="square"
+                />
 
                 <Button onClick={handleSaveLogo} disabled={updateHomepageMutation.isPending}>
                   <Save className="w-4 h-4 mr-2" />
