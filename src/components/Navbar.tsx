@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X, User, LogOut, Loader2 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { useNavigationMenu, useHomepageSettings } from "@/hooks/useSupabaseData";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,25 +11,36 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.png";
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, isLoading, signOut } = useAuth();
   const navigate = useNavigate();
+  
+  // Fetch dynamic menu and branding
+  const { data: navigationMenu } = useNavigationMenu();
+  const { data: homepageSettings } = useHomepageSettings();
+  
+  const logoSettings = homepageSettings?.find((s) => s.section_key === "logo");
+  const brandName = logoSettings?.title || "Karin Hidayah Tour";
 
   const handleSignOut = async () => {
     await signOut();
     navigate("/");
   };
 
-  const menuItems = [
-    { label: "Beranda", href: "/", isRoute: true },
-    { label: "Paket Umrah", href: "/umrah-packages", isRoute: true },
-    { label: "Paket Haji", href: "/hajj-packages", isRoute: true },
-    { label: "Tentang Kami", href: "/about-us", isRoute: true },
-    { label: "Galleri", href: "/gallery", isRoute: true },
-    { label: "Blog", href: "/blog", isRoute: true },
-    { label: "Kontak", href: "/contact", isRoute: true },
-  ];
+  // Use dynamic menu or fallback
+  const menuItems = navigationMenu && navigationMenu.length > 0
+    ? navigationMenu.map((item) => ({ label: item.label, href: item.path, isRoute: true }))
+    : [
+        { label: "Beranda", href: "/", isRoute: true },
+        { label: "Paket Umrah", href: "/umrah-packages", isRoute: true },
+        { label: "Paket Haji", href: "/hajj-packages", isRoute: true },
+        { label: "Tentang Kami", href: "/about-us", isRoute: true },
+        { label: "Galleri", href: "/gallery", isRoute: true },
+        { label: "Blog", href: "/blog", isRoute: true },
+        { label: "Kontak", href: "/contact", isRoute: true },
+      ];
 
   return (
     <nav className="sticky top-0 z-40 bg-white border-b border-border/50">
@@ -36,7 +48,10 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="Karin Hidayah Tour" className="h-8 w-8 object-contain" />
+            <img src={logo} alt={brandName} className="h-8 w-8 object-contain" />
+            <span className="font-serif text-lg font-semibold text-foreground hidden sm:inline">
+              {brandName}
+            </span>
           </Link>
 
           {/* Desktop Menu */}

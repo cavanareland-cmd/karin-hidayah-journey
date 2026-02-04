@@ -23,6 +23,7 @@ import logo from "@/assets/logo.png";
 
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/admin/dashboard" },
+  { icon: LayoutDashboard, label: "Homepage", path: "/admin/homepage" },
   { icon: Package, label: "Paket Umrah", path: "/admin/umrah-packages" },
   { icon: Package, label: "Paket Haji", path: "/admin/hajj-packages" },
   { icon: FileText, label: "Blog", path: "/admin/blog" },

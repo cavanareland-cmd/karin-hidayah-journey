@@ -140,6 +140,42 @@ export type Database = {
         }
         Relationships: []
       }
+      footer_settings: {
+        Row: {
+          content: string | null
+          created_at: string
+          id: string
+          is_active: boolean
+          links: Json | null
+          section_key: string
+          social_links: Json | null
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          links?: Json | null
+          section_key: string
+          social_links?: Json | null
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          links?: Json | null
+          section_key?: string
+          social_links?: Json | null
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       gallery_items: {
         Row: {
           category: string | null
@@ -277,6 +313,89 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      homepage_settings: {
+        Row: {
+          button_link: string | null
+          button_text: string | null
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          section_key: string
+          subtitle: string | null
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          button_link?: string | null
+          button_text?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          section_key: string
+          subtitle?: string | null
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          button_link?: string | null
+          button_text?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          section_key?: string
+          subtitle?: string | null
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      navigation_menu: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          label: string
+          order_index: number
+          parent_id: string | null
+          path: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          label: string
+          order_index?: number
+          parent_id?: string | null
+          path: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          label?: string
+          order_index?: number
+          parent_id?: string | null
+          path?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "navigation_menu_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "navigation_menu"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       prayer_times_settings: {
         Row: {
