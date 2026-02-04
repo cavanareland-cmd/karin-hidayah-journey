@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import AdminLayout from "@/components/admin/AdminLayout";
+import ImageUpload from "@/components/admin/ImageUpload";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -263,26 +264,23 @@ const AdminUmrahPackages = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="departure_date">Tanggal Keberangkatan</Label>
-                    <Input
-                      id="departure_date"
-                      type="date"
-                      value={formData.departure_date}
-                      onChange={(e) => setFormData({ ...formData, departure_date: e.target.value })}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="image_url">URL Gambar</Label>
-                    <Input
-                      id="image_url"
-                      value={formData.image_url}
-                      onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
-                      placeholder="https://..."
-                    />
-                  </div>
+                <div className="space-y-2">
+                  <Label htmlFor="departure_date">Tanggal Keberangkatan</Label>
+                  <Input
+                    id="departure_date"
+                    type="date"
+                    value={formData.departure_date}
+                    onChange={(e) => setFormData({ ...formData, departure_date: e.target.value })}
+                  />
                 </div>
+
+                <ImageUpload
+                  label="Gambar Paket"
+                  value={formData.image_url}
+                  onChange={(url) => setFormData({ ...formData, image_url: url })}
+                  folder="packages/umrah"
+                  aspectRatio="video"
+                />
 
                 <div className="flex gap-6">
                   <div className="flex items-center gap-2">
