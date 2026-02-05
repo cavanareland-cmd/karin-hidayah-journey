@@ -5,6 +5,7 @@ import ArrangementSection from "@/components/ArrangementSection";
 import PrayerTimeSection from "@/components/PrayerTimeSection";
 import HajjPackagesSection from "@/components/HajjPackagesSection";
 import HighlightsSection from "@/components/HighlightsSection";
+import ExploreSection from "@/components/ExploreSection";
 import FeaturedTourSection from "@/components/FeaturedTourSection";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -32,6 +33,9 @@ const Index = () => {
         
         {/* Highlights Services */}
         <HighlightsSection />
+        
+        {/* Explore Destinations */}
+        <ExploreSection />
         
         {/* Featured Tour */}
         <FeaturedTourSection />
