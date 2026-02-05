@@ -221,7 +221,8 @@ const PackageDetail = () => {
               </p>
               <p className="text-foreground leading-relaxed">
                 Paket Umrah Ramadhan 2026 bersama Karin Hidayah Tour dirancang untuk memberikan pengalaman ibadah yang khusyuk, nyaman, dan terarah. Dengan pendampingan ustadz berpengalaman, hotel dekat Masjidil Haram & Nabawi, serta layanan profesional dari keberangkatan hingga kepulangan.
-            </div>
+            </p>
+              </div>
 
             {/* Facilities Included */}
             <div>
