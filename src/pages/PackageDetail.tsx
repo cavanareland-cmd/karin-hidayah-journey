@@ -347,9 +347,13 @@ const PackageDetail = () => {
             <div className="absolute bottom-6 left-6 right-6 text-white">
               <h3 className="text-2xl font-bold mb-1">Momen Ibadah yang Menguatkan Hati</h3>
               <p className="text-sm text-white/80 mb-3">Umrah bukan sekadar perjalanan, tetapi panggilan hati. Kami hadir untuk menemani setiap jamaah dalam ibadah yang khusyuk, nyaman, dan sesuai tuntunan Rasulullah</p>
-              <button className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm hover:bg-white/30 transition-colors">
-                Explore now
-              </button>
+             <button
+  onClick={() => window.location.href = "/umrah-packages"}
+  className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm hover:bg-white/30 transition-colors"
+>
+  Explore now
+</button>
+
             </div>
           </div>
 
@@ -360,9 +364,14 @@ const PackageDetail = () => {
 
           {/* Contact Card */}
           <div className="bg-muted/50 rounded-3xl p-6 h-64 flex flex-col justify-center">
-            <button className="bg-secondary text-white px-4 py-2 rounded-full text-sm mb-4 w-fit">
-              Contact With Me
-            </button>
+         <button
+  onClick={() => window.location.href = "/contact"}
+  className="bg-secondary text-white px-4 py-2 rounded-full text-sm mb-4 w-fit"
+>
+  Contact With Me
+</button>
+
+
             <div className="flex items-center gap-2 text-muted-foreground mb-4">
               <Mail className="w-4 h-4" />
               <span className="text-sm">admin@karinhidayahtour.com</span>
