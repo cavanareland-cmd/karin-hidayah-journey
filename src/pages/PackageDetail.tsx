@@ -105,10 +105,10 @@ const ratingBreakdown = [
 ];
 
 const discoverPlaces = [
-  { title: "Private Wellness & Spa", image: spaWellness },
-  { title: "Infinity Pool by the Ocean", image: infinityPool },
-  { title: "Glass Kayaking", image: glassKayaking },
-  { title: "Lava Shell Massage", image: lavaMassage },
+  { title: "Mesir", image: spaWellness },
+  { title: "Turki", image: infinityPool },
+  { title: "Al Aqsa", image: glassKayaking },
+  { title: "Dubai", image: lavaMassage },
 ];
 
 const PackageDetail = () => {
