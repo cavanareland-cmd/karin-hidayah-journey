@@ -62,29 +62,33 @@ const Contact = () => {
     }
   };
 
-  const contactInfo = [
+ const contactInfo = [
+  {
+    icon: Phone,
+    title: "Telepon",
+    details: [companyPhone],
+  },
+  {
+    icon: MapPin,
+    title: "Alamat Kantor",
+    details: [company],
+  },
+  {
+    icon: Mail,
+    title: "Email",
+    details: [companyEmail],
+  },
+  {
+    icon: Clock,
+    title: "Jam Operasional",
+    details: [
+      "Senin - Jumat: 08:00 - 17:00",
+      "Sabtu: 09:00 - 14:00",
+      "Minggu: Tutup",
+    ],
+  },
+];
 
-    {
-      icon: Phone,
-      title: "Telepon",
-      details: [company],
-    },
-    {
-      icon: Location,
-      title: "Alamat Kantor",
-      details: [companyPhone],
-    },
-    {
-      icon: Mail,
-      title: "Email",
-      details: [companyEmail],
-    },
-    {
-      icon: Clock,
-      title: "Jam Operasional",
-      details: ["Senin - Jumat: 08:00 - 17:00", "Sabtu: 09:00 - 14:00", "Minggu: Tutup"],
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-background">
