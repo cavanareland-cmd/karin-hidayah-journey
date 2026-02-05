@@ -1,35 +1,34 @@
-import type { LucideIcon } from "lucide-react";
+import { ShieldCheck, Package, Users } from "lucide-react";
 
-type ServiceItem = {
-  image: string;
-  title: string;
-  description: string;
-  icon: LucideIcon;
-};
+import Dubai from "@/assets/glass-kayaking.jpg";
+import Aqsa from "@/assets/lava-massage.jpg";
+import Mesir from "@/assets/cta-beach.jpg";
+
 
 const services = [
   {
-    image: serviceImg,
+    image: Dubai,
     title: "Layanan Profesional",
     description:
       "Didukung tim berpengalaman yang mendampingi jamaah dari awal pendaftaran hingga kepulangan.",
     icon: Users,
   },
   {
-    image: serviceImg,
+    image: Aqsa,
     title: "Perlengkapan Premium",
     description:
       "Setiap jamaah mendapatkan perlengkapan ibadah lengkap dan berkualitas tinggi.",
     icon: Package,
   },
   {
-    image: serviceImg,
+    image: Mesir,
     title: "Resmi & Terpercaya",
     description:
       "Berizin resmi Kementerian Agama RI dan telah memberangkatkan ribuan jamaah.",
     icon: ShieldCheck,
   },
 ];
+
 
 const ExploreSection = () => {
   return (
