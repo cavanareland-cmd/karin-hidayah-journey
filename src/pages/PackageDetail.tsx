@@ -76,21 +76,21 @@ const reviews = [
   {
     text: "Professional, responsive, and genuinely helpful. The team made everything easy, quick felt like another great experience.",
     rating: 5,
-    name: "Clara Petrov",
+    name: "Arif Santoso",
     role: "Head of Transactions",
     recommended: true,
   },
   {
     text: "Professional, responsive, and genuinely helpful. The team made everything easy, quick felt like another great experience.",
     rating: 5,
-    name: "Lena Mirova",
+    name: "Rahma Dina",
     role: "Experience",
     recommended: true,
   },
   {
     text: "Professional, responsive, and genuinely helpful. The team made everything easy, quick felt like another great experience.",
     rating: 5,
-    name: "Lena Mirova",
+    name: "Khadijah",
     role: "Experience",
     recommended: true,
   },
@@ -216,11 +216,10 @@ const PackageDetail = () => {
                 PAKET UMRAH BULAN RAMADAN 2026
               </h2>
               <p className="text-muted-foreground text-sm mb-4">
-                Coastal Road Kair, Donna Bay District, Al kailat Island, Abu Dhabi, 16637 United Arab Emirates
+                Makkah Al-Mukarramah & Madinah Al-Munawwarah
               </p>
               <p className="text-foreground leading-relaxed">
-                A haven of refined elegance, this 120 sqm suite offers floor-to-ceiling views of the ocean, a private plunge pool, and a terrace made for golden-hour moments. Inside, discover handcrafted furnishings, premium amenities, and a spa-inspired bathroom to renew your senses.
-              </p>
+                Paket Umrah Ramadhan 2026 bersama Karin Hidayah Tour dirancang untuk memberikan pengalaman ibadah yang khusyuk, nyaman, dan terarah. Dengan pendampingan ustadz berpengalaman, hotel dekat Masjidil Haram & Nabawi, serta layanan profesional dari keberangkatan hingga kepulangan.
             </div>
 
             {/* Facilities Included */}
