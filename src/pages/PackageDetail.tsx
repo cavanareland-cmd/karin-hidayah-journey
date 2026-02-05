@@ -328,8 +328,8 @@ const PackageDetail = () => {
             <img src={desertDunes} alt="Desert Dunes" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6 text-white">
-              <h3 className="text-2xl font-bold mb-1">Moments that stay with you forever</h3>
-              <p className="text-sm text-white/80 mb-3">Breathe in the magic of Morocco's golden dunes</p>
+              <h3 className="text-2xl font-bold mb-1">Momen Ibadah yang Menguatkan Hati</h3>
+              <p className="text-sm text-white/80 mb-3">Umrah bukan sekadar perjalanan, tetapi panggilan hati. Kami hadir untuk menemani setiap jamaah dalam ibadah yang khusyuk, nyaman, dan sesuai tuntunan Rasulullah</p>
               <button className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm hover:bg-white/30 transition-colors">
                 Explore now
               </button>
@@ -357,7 +357,7 @@ const PackageDetail = () => {
 
         {/* Discover More Places */}
         <div className="mt-16">
-          <h2 className="text-3xl font-bold text-center text-foreground mb-10">Discover More Places</h2>
+          <h2 className="text-3xl font-bold text-center text-foreground mb-10">Paket Umrah Lainnya</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {discoverPlaces.map((place, index) => (
               <div key={index} className="group relative rounded-3xl overflow-hidden h-80">
