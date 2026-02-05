@@ -1,85 +1,66 @@
-import { Clock, Users, Bookmark } from "lucide-react";
-import destinationImg from "@/assets/destination-1.jpg";
+import { ShieldCheck, Package, Users } from "lucide-react";
+import serviceImg from "@/assets/destination-1.jpg";
 
-const destinations = [
+const services = [
   {
-    image: destinationImg,
-    title: "Layanan Professional",
-    duration: "5 d",
-    guests: "100",
-    maxGuests: "80",
+    image: serviceImg,
+    title: "Layanan Profesional",
+    description:
+      "Didukung tim berpengalaman yang mendampingi jamaah dari awal pendaftaran hingga kepulangan.",
+    icon: Users,
   },
   {
-    image: destinationImg,
+    image: serviceImg,
     title: "Perlengkapan Premium",
-    duration: "5 d",
-    guests: "100",
-    maxGuests: "80",
+    description:
+      "Setiap jamaah mendapatkan perlengkapan ibadah lengkap dan berkualitas tinggi.",
+    icon: Package,
   },
   {
-    image: destinationImg,
-    title: "Resmi Pemerintah",
-    duration: "5 d",
-    guests: "100",
-    maxGuests: "80",
+    image: serviceImg,
+    title: "Resmi & Terpercaya",
+    description:
+      "Berizin resmi Kementerian Agama RI dan telah memberangkatkan ribuan jamaah.",
+    icon: ShieldCheck,
   },
 ];
 
 const ExploreSection = () => {
   return (
-    <section className="py-8 px-4 lg:px-8">
+    <section className="py-12 px-4 lg:px-8">
       <div className="container mx-auto">
         {/* Header */}
-        <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
+        <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-10 text-center">
           Keunggulan Layanan Karin Hidayah Tour
         </h2>
 
-        {/* Destinations Grid */}
+        {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {destinations.map((dest, index) => (
+          {services.map((item, index) => (
             <div
               key={index}
-              className="relative overflow-hidden rounded-2xl group cursor-pointer h-64"
+              className="relative overflow-hidden rounded-2xl group h-72"
             >
-              {/* Image */}
+              {/* Background Image */}
               <img
-                src={dest.image}
-                alt={dest.title}
+                src={item.image}
+                alt={item.title}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-
-              {/* Badge */}
-              <div className="absolute top-4 left-4">
-                <span className="bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full font-medium">
-                  Place
-                </span>
-              </div>
-
-              {/* Bookmark */}
-              <button className="absolute top-4 right-4 w-8 h-8 bg-primary rounded-lg flex items-center justify-center hover:bg-primary/90 transition-colors">
-                <Bookmark className="w-4 h-4 text-primary-foreground" />
-              </button>
+              <div className="absolute inset-0 bg-black/60" />
 
               {/* Content */}
-              <div className="absolute bottom-4 left-4 right-4">
-                <h3 className="text-white font-bold text-lg mb-3">
-                  {dest.title}
-                </h3>
-                <div className="flex items-center gap-4 text-white/80 text-sm">
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    <span>{dest.duration}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Users className="w-4 h-4" />
-                    <span>{dest.guests}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Users className="w-4 h-4" />
-                    <span>{dest.maxGuests}</span>
-                  </div>
+              <div className="relative z-10 h-full flex flex-col justify-end p-6">
+                <div className="w-12 h-12 bg-primary/90 rounded-xl flex items-center justify-center mb-4">
+                  <item.icon className="w-6 h-6 text-white" />
                 </div>
+
+                <h3 className="text-white font-bold text-lg mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-white/85 text-sm leading-relaxed">
+                  {item.description}
+                </p>
               </div>
             </div>
           ))}
