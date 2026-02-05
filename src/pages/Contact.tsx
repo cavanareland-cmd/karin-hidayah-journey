@@ -275,31 +275,7 @@ const Contact = () => {
                   </a>
                 </div>
 
-                {/* Map */}
-                <div className="bg-card rounded-2xl overflow-hidden border border-border">
-                  <div className="p-4 border-b border-border">
-                    <h3 className="font-semibold text-foreground flex items-center gap-2">
-                      <MapPin className="w-5 h-5 text-primary" />
-                      Lokasi Kantor
-                    </h3>
-                  </div>
-                  <div className="aspect-video bg-muted">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0665456893373!2d106.82266431476894!3d-6.256444295458654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2sJakarta%20Selatan%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1640000000000!5m2!1sid!2sid"
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title="Lokasi Kantor Karin Hidayah Tour"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        
 
         {/* FAQ Teaser */}
         <section className="py-16 bg-secondary/30">
