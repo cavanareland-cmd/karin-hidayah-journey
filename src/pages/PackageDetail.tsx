@@ -126,9 +126,18 @@ const PackageDetail = () => {
           <h1 className="text-3xl font-bold text-secondary italic">Itinerary</h1>
           <div className="flex items-center gap-2 text-muted-foreground">
             <span className="text-sm">Sort by:</span>
-            <button className="flex items-center gap-1 font-medium text-foreground">
-              Date <ChevronDown className="w-4 h-4" />
-            </button>
+          <button
+  onClick={() =>
+    window.open(
+      "https://wa.me/6281234567890?text=Assalamualaikum,%20saya%20ingin%20booking%20paket%20Umrah",
+      "_blank"
+    )
+  }
+  className="absolute bottom-4 left-4 right-4 bg-white/20 backdrop-blur-sm text-white py-3 rounded-full flex items-center justify-center gap-2 hover:bg-white/30 transition-colors"
+>
+  BOOK NOW <ArrowRight className="w-4 h-4" />
+</button>
+
           </div>
         </div>
 
