@@ -408,17 +408,7 @@ const PackageDetail = () => {
             <p className="max-w-2xl text-white/80 mb-8">
              Konsultasikan rencana Umrah Anda bersama tim Karin Hidayah Tour. Kami siap membimbing dari awal hingga akhir perjalanan ibadah.
             </p>
-            <button
-  onClick={() =>
-    window.open(
-      "https://wa.me/6281234567890?text=Assalamualaikum,%20saya%20ingin%20booking%20paket%20Umrah",
-      "_blank"
-    )
-  }
-  className="absolute bottom-4 left-4 right-4 bg-white/20 backdrop-blur-sm text-white py-3 rounded-full flex items-center justify-center gap-2 hover:bg-white/30 transition-colors"
->
-  BOOK NOW <ArrowRight className="w-4 h-4" />
-</button>
+   
 
           </div>
         </div>
