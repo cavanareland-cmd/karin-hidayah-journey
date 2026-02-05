@@ -36,34 +36,39 @@ const ExploreSection = () => {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {services.map((item, index) => (
-            <div
-              key={index}
-              className="relative overflow-hidden rounded-2xl group h-72"
-            >
-              {/* Background Image */}
-              <img
-                src={item.image}
-                alt={item.title}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-black/60" />
+{services.map((item, index) => {
+  const Icon = item.icon;
 
-              {/* Content */}
-              <div className="relative z-10 h-full flex flex-col justify-end p-6">
-                <div className="w-12 h-12 bg-primary/90 rounded-xl flex items-center justify-center mb-4">
-                  <item.icon className="w-6 h-6 text-white" />
-                </div>
+  return (
+    <div
+      key={index}
+      className="relative overflow-hidden rounded-2xl group h-72"
+    >
+      {/* Background Image */}
+      <img
+        src={item.image}
+        alt={item.title}
+        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      />
+      <div className="absolute inset-0 bg-black/60" />
 
-                <h3 className="text-white font-bold text-lg mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-white/85 text-sm leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          ))}
+      {/* Content */}
+      <div className="relative z-10 h-full flex flex-col justify-end p-6">
+        <div className="w-12 h-12 bg-primary/90 rounded-xl flex items-center justify-center mb-4">
+          <Icon className="w-6 h-6 text-white" />
+        </div>
+
+        <h3 className="text-white font-bold text-lg mb-2">
+          {item.title}
+        </h3>
+        <p className="text-white/85 text-sm leading-relaxed">
+          {item.description}
+        </p>
+      </div>
+    </div>
+  );
+})}
+
         </div>
       </div>
     </section>
