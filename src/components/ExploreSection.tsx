@@ -4,21 +4,21 @@ import destinationImg from "@/assets/destination-1.jpg";
 const destinations = [
   {
     image: destinationImg,
-    title: "Egyptian pyramids",
+    title: "Layanan Professional",
     duration: "5 d",
     guests: "100",
     maxGuests: "80",
   },
   {
     image: destinationImg,
-    title: "Egyptian pyramids",
+    title: "Perlengkapan Premium",
     duration: "5 d",
     guests: "100",
     maxGuests: "80",
   },
   {
     image: destinationImg,
-    title: "Egyptian pyramids",
+    title: "Resmi Pemerintah",
     duration: "5 d",
     guests: "100",
     maxGuests: "80",
@@ -31,7 +31,7 @@ const ExploreSection = () => {
       <div className="container mx-auto">
         {/* Header */}
         <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
-          Explore our Highlights services
+          Keunggulan Layanan Karin Hidayah Tour
         </h2>
 
         {/* Destinations Grid */}
