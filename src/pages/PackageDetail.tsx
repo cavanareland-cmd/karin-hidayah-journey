@@ -377,10 +377,10 @@ const PackageDetail = () => {
           <img src={ctaBeach} alt="Beach Resort" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-secondary/60" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Your Abu Dhabi Escape Awaits</h2>
-            <h3 className="text-2xl md:text-3xl font-bold mb-6">Book Your Experience Right Now</h3>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Wujudkan Niat Umrah Anda Bersama Kami</h2>
+            <h3 className="text-2xl md:text-3xl font-bold mb-6">Konsultasi Gratis Sekarang</h3>
             <p className="max-w-2xl text-white/80 mb-8">
-              Whether you want relaxation by the pool, exhilaration in desert adventure, or romance in the cultural heartland of Abu Dhabi, our resort offers a variety of activities that suit your every mood.
+             Konsultasikan rencana Umrah Anda bersama tim Karin Hidayah Tour. Kami siap membimbing dari awal hingga akhir perjalanan ibadah.
             </p>
             <button className="bg-white/20 backdrop-blur-sm text-white px-8 py-3 rounded-full flex items-center gap-2 hover:bg-white/30 transition-colors border border-white/30">
               BOOK NOW <ArrowRight className="w-4 h-4" />
