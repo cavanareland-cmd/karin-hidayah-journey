@@ -24,8 +24,8 @@ const Contact = () => {
 
   const whatsappNumber = settings?.whatsapp_number || "6281234567890";
   const companyPhone = settings?.company_phone || "+62 812 3456 7890";
-  const companyEmail = settings?.company_email || "info@karinhidayah.com";
-  const companyAddress = settings?.company_address || "Jl. Masjid Raya No. 123, Jakarta Selatan";
+  const companyEmail = settings?.company_email || "admin@karinhidayahtour.com";
+  const companyAddress = settings?.company_address || "Perum Karah Indah I Blok G1, Karah, Kec. Jambangan, Surabaya, Jawa Timur 60232";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
