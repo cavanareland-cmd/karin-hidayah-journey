@@ -53,6 +53,63 @@ export type Database = {
         }
         Relationships: []
       }
+      arrangement_section: {
+        Row: {
+          badge_text: string | null
+          button_link: string | null
+          button_text: string | null
+          created_at: string
+          date_text: string | null
+          description: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean | null
+          location_text: string | null
+          order_index: number | null
+          section_key: string
+          spots_text: string | null
+          subtitle: string | null
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          badge_text?: string | null
+          button_link?: string | null
+          button_text?: string | null
+          created_at?: string
+          date_text?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          location_text?: string | null
+          order_index?: number | null
+          section_key: string
+          spots_text?: string | null
+          subtitle?: string | null
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          badge_text?: string | null
+          button_link?: string | null
+          button_text?: string | null
+          created_at?: string
+          date_text?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          location_text?: string | null
+          order_index?: number | null
+          section_key?: string
+          spots_text?: string | null
+          subtitle?: string | null
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       blog_posts: {
         Row: {
           author_name: string | null

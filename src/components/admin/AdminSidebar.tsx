@@ -16,6 +16,7 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
+  LayoutGrid,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -24,6 +25,7 @@ import logo from "@/assets/logo.png";
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/admin/dashboard" },
   { icon: LayoutDashboard, label: "Homepage", path: "/admin/homepage" },
+  { icon: LayoutGrid, label: "Arrangement Section", path: "/admin/arrangement" },
   { icon: Package, label: "Paket Umrah", path: "/admin/umrah-packages" },
   { icon: Package, label: "Paket Haji", path: "/admin/hajj-packages" },
   { icon: FileText, label: "Blog", path: "/admin/blog" },
