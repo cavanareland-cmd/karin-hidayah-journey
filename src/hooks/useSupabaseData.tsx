@@ -275,6 +275,23 @@ export function useProducts() {
   );
 }
 
+// Arrangement Section
+export function useArrangementSection() {
+  return useRealtimeQuery<Tables<"arrangement_section">[]>(
+    ["arrangement_section"],
+    "arrangement_section",
+    async () => {
+      const { data, error } = await supabase
+        .from("arrangement_section")
+        .select("*")
+        .eq("is_active", true)
+        .order("order_index");
+      if (error) throw error;
+      return data || [];
+    }
+  );
+}
+
 // Site Settings
 export function useSiteSettings() {
   return useRealtimeQuery<Record<string, string>>(

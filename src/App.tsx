@@ -33,6 +33,7 @@ import AdminPrayerTimes from "./pages/admin/AdminPrayerTimes";
 import AdminHighlights from "./pages/admin/AdminHighlights";
 import AdminProducts from "./pages/admin/AdminProducts";
 import AdminAbout from "./pages/admin/AdminAbout";
+import AdminArrangementSection from "./pages/admin/AdminArrangementSection";
 
 const queryClient = new QueryClient();
 
@@ -61,6 +62,7 @@ const App = () => (
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/admin/homepage" element={<AdminHomepage />} />
+            <Route path="/admin/arrangement" element={<AdminArrangementSection />} />
             <Route path="/admin/umrah-packages" element={<AdminUmrahPackages />} />
             <Route path="/admin/hajj-packages" element={<AdminHajjPackages />} />
             <Route path="/admin/blog" element={<AdminBlog />} />
