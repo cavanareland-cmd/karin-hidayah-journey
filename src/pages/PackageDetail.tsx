@@ -7,11 +7,11 @@ import packageHero from "@/assets/package-hero.jpg";
 import itineraryMap from "@/assets/itinerary-map.jpg";
 import hotelRoom from "@/assets/hotel-room.jpg";
 import desertDunes from "@/assets/desert-dunes.jpg";
-import infinityPool from "@/assets/infinity-pool.jpg";
+import Jeddah from "@/assets/infinity-pool.jpg";
 import spaWellness from "@/assets/spa-wellness.jpg";
-import glassKayaking from "@/assets/glass-kayaking.jpg";
-import lavaMassage from "@/assets/lava-massage.jpg";
-import ctaBeach from "@/assets/cta-beach.jpg";
+import Dubai from "@/assets/glass-kayaking.jpg";
+import Aqsa from "@/assets/lava-massage.jpg";
+import Mesir from "@/assets/cta-beach.jpg";
 
 const itineraryData = [
   {
@@ -105,10 +105,10 @@ const ratingBreakdown = [
 ];
 
 const discoverPlaces = [
-  { title: "Mesir", image: spaWellness },
-  { title: "Turki", image: infinityPool },
-  { title: "Al Aqsa", image: glassKayaking },
-  { title: "Dubai", image: lavaMassage },
+  { title: "Mesir", image: cta-beach },
+  { title: "Jeddah", image: infinityPool },
+  { title: "Dubai", image: glassKayaking },
+  { title: "Aqsa", image: lavaMassage },
 ];
 
 const PackageDetail = () => {
