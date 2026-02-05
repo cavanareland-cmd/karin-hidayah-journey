@@ -374,7 +374,7 @@ const PackageDetail = () => {
 
         {/* CTA Section */}
         <div className="relative rounded-3xl overflow-hidden mt-16 h-[400px]">
-          <img src={ctaBeach} alt="Beach Resort" className="w-full h-full object-cover" />
+          <img src={Mesir} alt="Beach Resort" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-secondary/60" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Wujudkan Niat Umrah Anda Bersama Kami</h2>
