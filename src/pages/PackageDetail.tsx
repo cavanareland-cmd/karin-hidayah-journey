@@ -187,13 +187,18 @@ const PackageDetail = () => {
             {/* Pagination Dots */}
             <div className="flex justify-center gap-2 pt-4">
               {[0, 1, 2, 3].map((dot) => (
-                <button
-                  key={dot}
-                  onClick={() => setActiveDot(dot)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    activeDot === dot ? "bg-secondary" : "bg-muted"
-                  }`}
-                />
+               <button
+  onClick={() =>
+    window.open(
+      "https://wa.me/6281234567890?text=Assalamualaikum,%20saya%20ingin%20booking%20paket%20Umrah",
+      "_blank"
+    )
+  }
+  className="absolute bottom-4 left-4 right-4 bg-white/20 backdrop-blur-sm text-white py-3 rounded-full flex items-center justify-center gap-2 hover:bg-white/30 transition-colors"
+>
+  BOOK NOW <ArrowRight className="w-4 h-4" />
+</button>
+
               ))}
             </div>
           </div>
@@ -205,17 +210,18 @@ const PackageDetail = () => {
               <img src={packageHero} alt="Package Hero" className="w-full h-[400px] object-cover" />
               <div className="absolute bottom-6 left-6 flex gap-3">
                 {["Resorts", "Top Highlights", "Best Value Resorts"].map((filter) => (
-                  <button
-                    key={filter}
-                    onClick={() => setActiveFilter(filter)}
-                    className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                      activeFilter === filter
-                        ? "bg-white text-foreground shadow-lg"
-                        : "bg-white/30 text-white backdrop-blur-sm hover:bg-white/50"
-                    }`}
-                  >
-                    {filter}
-                  </button>
+             <button
+  onClick={() =>
+    window.open(
+      "https://wa.me/6281234567890?text=Assalamualaikum,%20saya%20ingin%20booking%20paket%20Umrah",
+      "_blank"
+    )
+  }
+  className="absolute bottom-4 left-4 right-4 bg-white/20 backdrop-blur-sm text-white py-3 rounded-full flex items-center justify-center gap-2 hover:bg-white/30 transition-colors"
+>
+  BOOK NOW <ArrowRight className="w-4 h-4" />
+</button>
+
                 ))}
               </div>
             </div>
@@ -375,9 +381,18 @@ const PackageDetail = () => {
                 <img src={place.image} alt={place.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute top-4 left-4 text-white font-medium">{place.title}</div>
-                <button className="absolute bottom-4 left-4 right-4 bg-white/20 backdrop-blur-sm text-white py-3 rounded-full flex items-center justify-center gap-2 hover:bg-white/30 transition-colors">
-                  BOOK NOW <ArrowRight className="w-4 h-4" />
-                </button>
+                <button
+  onClick={() =>
+    window.open(
+      "https://wa.me/6281234567890?text=Assalamualaikum,%20saya%20ingin%20booking%20paket%20Umrah",
+      "_blank"
+    )
+  }
+  className="absolute bottom-4 left-4 right-4 bg-white/20 backdrop-blur-sm text-white py-3 rounded-full flex items-center justify-center gap-2 hover:bg-white/30 transition-colors"
+>
+  BOOK NOW <ArrowRight className="w-4 h-4" />
+</button>
+
               </div>
             ))}
           </div>
@@ -393,9 +408,18 @@ const PackageDetail = () => {
             <p className="max-w-2xl text-white/80 mb-8">
              Konsultasikan rencana Umrah Anda bersama tim Karin Hidayah Tour. Kami siap membimbing dari awal hingga akhir perjalanan ibadah.
             </p>
-            <button className="bg-white/20 backdrop-blur-sm text-white px-8 py-3 rounded-full flex items-center gap-2 hover:bg-white/30 transition-colors border border-white/30">
-              BOOK NOW <ArrowRight className="w-4 h-4" />
-            </button>
+            <button
+  onClick={() =>
+    window.open(
+      "https://wa.me/6281234567890?text=Assalamualaikum,%20saya%20ingin%20booking%20paket%20Umrah",
+      "_blank"
+    )
+  }
+  className="absolute bottom-4 left-4 right-4 bg-white/20 backdrop-blur-sm text-white py-3 rounded-full flex items-center justify-center gap-2 hover:bg-white/30 transition-colors"
+>
+  BOOK NOW <ArrowRight className="w-4 h-4" />
+</button>
+
           </div>
         </div>
       </main>
