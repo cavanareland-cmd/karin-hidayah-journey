@@ -1,5 +1,11 @@
-import { ShieldCheck, Package, Users } from "lucide-react";
-import serviceImg from "@/assets/destination-1.jpg";
+import type { LucideIcon } from "lucide-react";
+
+type ServiceItem = {
+  image: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
+};
 
 const services = [
   {
