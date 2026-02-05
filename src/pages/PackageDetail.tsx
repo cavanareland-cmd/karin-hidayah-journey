@@ -105,11 +105,12 @@ const ratingBreakdown = [
 ];
 
 const discoverPlaces = [
-  { title: "Mesir", image: cta-beach },
-  { title: "Jeddah", image: infinityPool },
-  { title: "Dubai", image: glassKayaking },
-  { title: "Aqsa", image: lavaMassage },
+  { title: "Mesir", image: Mesir },
+  { title: "Jeddah", image: Jeddah },
+  { title: "Dubai", image: Dubai },
+  { title: "Aqsa", image: Aqsa },
 ];
+
 
 const PackageDetail = () => {
   const [activeFilter, setActiveFilter] = useState("Resorts");
