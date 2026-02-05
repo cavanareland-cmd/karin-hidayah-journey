@@ -10,22 +10,22 @@ import scholar3 from "@/assets/scholar-3.jpg";
 const AboutUs = () => {
   const teamMembers = [
     {
-      name: "Ibu Ifa",
+      name: "Ustadz Ahmad Hidayat",
       role: "Founder & CEO",
       image: scholar1,
       description: "Berpengalaman 20+ tahun dalam industri travel haji dan umrah"
     },
     {
-      name: "Ustadz Fajar",
-      role: "Direktur Keuangan",
+      name: "Hj. Siti Karina",
+      role: "Direktur Operasional",
       image: scholar2,
       description: "Ahli dalam manajemen perjalanan ibadah dan pelayanan jamaah"
     },
     {
-      name: "Ibu Danu Hadijati",
-      role: "Komiasaris",
+      name: "Ustadz Muhammad Rizki",
+      role: "Pembimbing Ibadah",
       image: scholar3,
-      description: "Ahli dalam manajemen perjalanan ibadah dan pelayanan jamaah"
+      description: "Hafidz Quran dan lulusan Universitas Islam Madinah"
     }
   ];
 

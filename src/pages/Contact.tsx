@@ -24,8 +24,8 @@ const Contact = () => {
 
   const whatsappNumber = settings?.whatsapp_number || "6281234567890";
   const companyPhone = settings?.company_phone || "+62 812 3456 7890";
-  const companyEmail = settings?.company_email || "admin@karinhidayahtour.com";
-  const company = settings?.company_address || "Perum Karah Indah I Blok G1, Karah, Kec. Jambangan, Surabaya, Jawa Timur 60232";
+  const companyEmail = settings?.company_email || "info@karinhidayah.com";
+  const companyAddress = settings?.company_address || "Jl. Masjid Raya No. 123, Jakarta Selatan";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -62,33 +62,28 @@ const Contact = () => {
     }
   };
 
- const contactInfo = [
-  {
-    icon: Phone,
-    title: "Telepon",
-    details: [companyPhone],
-  },
-  {
-    icon: MapPin,
-    title: "Alamat Kantor",
-    details: [company],
-  },
-  {
-    icon: Mail,
-    title: "Email",
-    details: [companyEmail],
-  },
-  {
-    icon: Clock,
-    title: "Jam Operasional",
-    details: [
-      "Senin - Jumat: 08:00 - 17:00",
-      "Sabtu: 09:00 - 14:00",
-      "Minggu: Tutup",
-    ],
-  },
-];
-
+  const contactInfo = [
+    {
+      icon: MapPin,
+      title: "Alamat Kantor",
+      details: companyAddress.split(","),
+    },
+    {
+      icon: Phone,
+      title: "Telepon",
+      details: [companyPhone],
+    },
+    {
+      icon: Mail,
+      title: "Email",
+      details: [companyEmail],
+    },
+    {
+      icon: Clock,
+      title: "Jam Operasional",
+      details: ["Senin - Jumat: 08:00 - 17:00", "Sabtu: 09:00 - 14:00", "Minggu: Tutup"],
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
