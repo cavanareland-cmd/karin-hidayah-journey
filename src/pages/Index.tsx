@@ -1,54 +1,55 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import CategoryGridSection from "@/components/CategoryGridSection";
+import FeaturesSection from "@/components/FeaturesSection";
 import ArrangementSection from "@/components/ArrangementSection";
 import PrayerTimeSection from "@/components/PrayerTimeSection";
 import HajjPackagesSection from "@/components/HajjPackagesSection";
+import PricingSection from "@/components/PricingSection";
 import HighlightsSection from "@/components/HighlightsSection";
 import ExploreSection from "@/components/ExploreSection";
 import FeaturedTourSection from "@/components/FeaturedTourSection";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
-import CategoryGridSection from "@/components/CategoryGridSection";
-
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
-<main>
-  {/* Hero Section */}
-  <HeroSection />
-  
-{false && <ServiceIconsSection />}
 
+      <main>
+        {/* Hero */}
+        <HeroSection />
 
-  {/* Category Grid (Flowbite-style) */}
-  <CategoryGridSection />
-  
-  {/* Arrangement Section */}
-  <ArrangementSection />
-  
-  {/* Prayer Times */}
-  <PrayerTimeSection />
-  
-  {/* Hajj Packages */}
-  <HajjPackagesSection />
-  
-  {/* Highlights Services */}
-  <HighlightsSection />
-  
-  {/* Explore Destinations */}
-  <ExploreSection />
-  
-  {/* Featured Tour */}
-  <FeaturedTourSection />
-</main>
+        {/* Category Grid (pengganti icon lama) */}
+        <CategoryGridSection />
 
-      
+        {/* Features Umrah & Haji */}
+        <FeaturesSection />
+
+        {/* Arrangement */}
+        <ArrangementSection />
+
+        {/* Prayer Times */}
+        <PrayerTimeSection />
+
+        {/* Hajj & Umrah Packages */}
+        <HajjPackagesSection />
+
+        {/* Pricing */}
+        <PricingSection />
+
+        {/* Highlights */}
+        <HighlightsSection />
+
+        {/* Explore */}
+        <ExploreSection />
+
+        {/* Featured Tour */}
+        <FeaturedTourSection />
+      </main>
+
       <Footer />
-      
-      {/* WhatsApp Floating Button */}
       <WhatsAppFloat />
     </div>
   );
