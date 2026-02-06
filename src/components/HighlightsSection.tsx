@@ -56,11 +56,11 @@ const HighlightsSection = () => {
         </div>
 
         {/* Team/Scholars Grid */}
-        <div className="flex justify-center gap-4 overflow-x-auto pb-4 scrollbar-hide">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-6xl mx-auto">
           {displayItems.map((member) => (
             <div
               key={member.id}
-              className="flex-shrink-0 w-28 md:w-32 text-center group cursor-pointer"
+              className="text-center group cursor-pointer"
             >
               <div className="relative mb-3">
                 <div className="w-24 h-24 md:w-28 md:h-28 mx-auto rounded-2xl overflow-hidden border-2 border-transparent group-hover:border-primary/30 transition-all">
