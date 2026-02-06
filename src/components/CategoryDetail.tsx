@@ -55,76 +55,89 @@ const CATEGORY_CONTENT: Record<
 };
 
 const CategoryDetail = () => {
-  const { slug } = useParams();
+  const { slug } = useParams<{ slug: string }>();
   const data = slug ? CATEGORY_CONTENT[slug] : null;
-
-  if (!data) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-muted-foreground">Kategori tidak ditemukan.</p>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
       <main>
-        {/* HERO DETAIL */}
-        <section className="py-24 px-6 bg-muted/40">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl md:text-4xl font-bold">
-              {data.title}
+        {!data ? (
+          <section className="py-32 text-center">
+            <h1 className="text-2xl font-semibold">
+              Kategori tidak ditemukan
             </h1>
             <p className="mt-4 text-muted-foreground">
-              {data.description}
+              Silakan kembali ke halaman utama.
             </p>
 
-            <div className="mt-6 flex justify-center gap-4">
-              <Link
-                to="/umrah-packages"
-                className="px-6 py-3 bg-primary text-primary-foreground rounded-md hover:opacity-90"
-              >
-                Lihat Paket Umrah
-              </Link>
+            <Link
+              to="/"
+              className="inline-block mt-6 px-6 py-3 bg-primary text-primary-foreground rounded-md"
+            >
+              Kembali ke Beranda
+            </Link>
+          </section>
+        ) : (
+          <>
+            {/* HERO */}
+            <section className="py-24 px-6 bg-muted/40">
+              <div className="max-w-4xl mx-auto text-center">
+                <h1 className="text-3xl md:text-4xl font-bold">
+                  {data.title}
+                </h1>
+                <p className="mt-4 text-muted-foreground">
+                  {data.description}
+                </p>
 
-              <a
-                href="https://wa.me/628xxxxxxxxxx"
-                className="px-6 py-3 border rounded-md hover:bg-muted"
-              >
-                Tanya Admin
-              </a>
-            </div>
-          </div>
-        </section>
+                <div className="mt-6 flex justify-center gap-4">
+                  <Link
+                    to="/umrah-packages"
+                    className="px-6 py-3 bg-primary text-primary-foreground rounded-md hover:opacity-90"
+                  >
+                    Lihat Paket Umrah
+                  </Link>
 
-        {/* FEATURES */}
-        <section className="py-24 px-6">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-center">
-              Apa yang Anda Dapatkan
-            </h2>
-
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-              {data.features.map((item, index) => (
-                <div
-                  key={index}
-                  className="rounded-xl border p-6 hover:shadow-md transition"
-                >
-                  <h3 className="font-semibold">{item}</h3>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Layanan ini kami siapkan untuk memastikan kenyamanan dan
-                    ketenangan ibadah Anda.
-                  </p>
+                  <a
+                    href="https://wa.me/6281234567890"
+                    target="_blank"
+                    className="px-6 py-3 border rounded-md hover:bg-muted"
+                  >
+                    Tanya Admin
+                  </a>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              </div>
+            </section>
 
-        {/* PRICING (REUSE) */}
-        <PricingSection />
+            {/* FEATURES */}
+            <section className="py-24 px-6">
+              <div className="max-w-5xl mx-auto">
+                <h2 className="text-2xl md:text-3xl font-bold text-center">
+                  Apa yang Anda Dapatkan
+                </h2>
+
+                <div className="mt-12 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+                  {data.features.map((item, index) => (
+                    <div
+                      key={index}
+                      className="rounded-xl border p-6 hover:shadow-md transition"
+                    >
+                      <h3 className="font-semibold">{item}</h3>
+                      <p className="text-sm text-muted-foreground mt-2">
+                        Layanan ini kami siapkan untuk memastikan kenyamanan
+                        dan ketenangan ibadah Anda.
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* PRICING */}
+            <PricingSection />
+          </>
+        )}
       </main>
 
       <Footer />
