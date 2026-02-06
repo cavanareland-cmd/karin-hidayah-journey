@@ -7,10 +7,26 @@ import {
 } from "lucide-react";
 
 const categories = [
-  { label: "Manasik Umrah", icon: Book, slug: "manasik-umrah" },
-  { label: "Perlengkapan Ibadah", icon: Shirt, slug: "perlengkapan-ibadah" },
-  { label: "E-Guide & Materi", icon: Laptop, slug: "e-guide-materi" },
-  { label: "Aktivitas Jamaah", icon: Gamepad2, slug: "aktivitas-jamaah" },
+  {
+    label: "Manasik Umrah",
+    slug: "manasik-umrah",
+    icon: Book,
+  },
+  {
+    label: "Perlengkapan Ibadah",
+    slug: "perlengkapan-ibadah",
+    icon: Shirt,
+  },
+  {
+    label: "E-Guide & Materi",
+    slug: "e-guide-materi",
+    icon: Laptop,
+  },
+  {
+    label: "Aktivitas Jamaah",
+    slug: "aktivitas-jamaah",
+    icon: Gamepad2,
+  },
 ];
 
 const CategoryGridSection = () => {
@@ -25,10 +41,9 @@ const CategoryGridSection = () => {
               <Link
                 key={item.slug}
                 to={`/kategori/${item.slug}`}
-                className="group flex items-center gap-3 rounded-lg border bg-background px-4 py-4 transition
-                           hover:bg-muted hover:shadow-md"
+                className="flex items-center gap-3 rounded-lg border bg-background px-4 py-3 hover:bg-muted transition"
               >
-                <Icon className="w-5 h-5 text-primary group-hover:scale-110 transition" />
+                <Icon className="w-5 h-5 text-primary" />
                 <span className="text-sm font-medium">
                   {item.label}
                 </span>
