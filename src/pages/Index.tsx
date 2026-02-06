@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import ServiceIconsSection from "@/components/ServiceIconsSection";
 import ArrangementSection from "@/components/ArrangementSection";
 import PrayerTimeSection from "@/components/PrayerTimeSection";
 import HajjPackagesSection from "@/components/HajjPackagesSection";
