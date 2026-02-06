@@ -33,7 +33,7 @@ const menuItems = [
   { icon: MessageSquare, label: "Pesan Kontak", path: "/admin/messages" },
   { icon: Bookmark, label: "Service Icons", path: "/admin/service-icons" },
   { icon: Clock, label: "Waktu Sholat", path: "/admin/prayer-times" },
-  { icon: Star, label: "Highlight Services", path: "/admin/highlights" },
+  { icon: Star, label: "Explore Section", path: "/admin/explore" },
   { icon: ShoppingBag, label: "Produk", path: "/admin/products" },
   { icon: Users, label: "Tim & About Us", path: "/admin/about" },
   { icon: Settings, label: "Pengaturan", path: "/admin/settings" },

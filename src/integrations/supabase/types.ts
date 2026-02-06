@@ -370,37 +370,49 @@ export type Database = {
       }
       highlight_services: {
         Row: {
+          badge_text: string | null
           created_at: string
           description: string | null
+          duration: string | null
+          guests: number | null
           icon_name: string | null
           id: string
           image_url: string | null
           is_active: boolean
           link_url: string | null
+          max_guests: number | null
           order_index: number
           title: string
           updated_at: string
         }
         Insert: {
+          badge_text?: string | null
           created_at?: string
           description?: string | null
+          duration?: string | null
+          guests?: number | null
           icon_name?: string | null
           id?: string
           image_url?: string | null
           is_active?: boolean
           link_url?: string | null
+          max_guests?: number | null
           order_index?: number
           title: string
           updated_at?: string
         }
         Update: {
+          badge_text?: string | null
           created_at?: string
           description?: string | null
+          duration?: string | null
+          guests?: number | null
           icon_name?: string | null
           id?: string
           image_url?: string | null
           is_active?: boolean
           link_url?: string | null
+          max_guests?: number | null
           order_index?: number
           title?: string
           updated_at?: string
