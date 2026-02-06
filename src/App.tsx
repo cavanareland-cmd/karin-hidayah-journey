@@ -34,6 +34,7 @@ import AdminHighlights from "./pages/admin/AdminHighlights";
 import AdminProducts from "./pages/admin/AdminProducts";
 import AdminAbout from "./pages/admin/AdminAbout";
 import AdminArrangementSection from "./pages/admin/AdminArrangementSection";
+import AdminExploreSection from "./pages/admin/AdminExploreSection";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +73,7 @@ const App = () => (
             <Route path="/admin/service-icons" element={<AdminServiceIcons />} />
             <Route path="/admin/prayer-times" element={<AdminPrayerTimes />} />
             <Route path="/admin/highlights" element={<AdminHighlights />} />
+            <Route path="/admin/explore" element={<AdminExploreSection />} />
             <Route path="/admin/products" element={<AdminProducts />} />
             <Route path="/admin/about" element={<AdminAbout />} />
             
