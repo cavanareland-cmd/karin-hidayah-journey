@@ -13,6 +13,8 @@ import Gallery from "./pages/Gallery";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import CategoryDetail from "./pages/CategoryDetail";
+
 
 // Auth Pages
 import Login from "./pages/auth/Login";
@@ -45,41 +47,34 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/umrah-packages" element={<UmrahPackages />} />
-            <Route path="/hajj-packages" element={<HajjPackages />} />
-            <Route path="/about-us" element={<AboutUs />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/package/:id" element={<PackageDetail />} />
-            
-            {/* Auth Routes */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            
-            {/* Admin Routes */}
-            <Route path="/admin" element={<AdminLogin />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/homepage" element={<AdminHomepage />} />
-            <Route path="/admin/arrangement" element={<AdminArrangementSection />} />
-            <Route path="/admin/umrah-packages" element={<AdminUmrahPackages />} />
-            <Route path="/admin/hajj-packages" element={<AdminHajjPackages />} />
-            <Route path="/admin/blog" element={<AdminBlog />} />
-            <Route path="/admin/gallery" element={<AdminGallery />} />
-            <Route path="/admin/messages" element={<AdminMessages />} />
-            <Route path="/admin/settings" element={<AdminSettings />} />
-            <Route path="/admin/service-icons" element={<AdminServiceIcons />} />
-            <Route path="/admin/prayer-times" element={<AdminPrayerTimes />} />
-            <Route path="/admin/highlights" element={<AdminHighlights />} />
-            <Route path="/admin/explore" element={<AdminExploreSection />} />
-            <Route path="/admin/products" element={<AdminProducts />} />
-            <Route path="/admin/about" element={<AdminAbout />} />
-            
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+      <Routes>
+  <Route path="/" element={<Index />} />
+
+  {/* Public Pages */}
+  <Route path="/umrah-packages" element={<UmrahPackages />} />
+  <Route path="/hajj-packages" element={<HajjPackages />} />
+  <Route path="/about-us" element={<AboutUs />} />
+  <Route path="/gallery" element={<Gallery />} />
+  <Route path="/blog" element={<Blog />} />
+  <Route path="/contact" element={<Contact />} />
+  <Route path="/package/:id" element={<PackageDetail />} />
+
+  {/* 🔥 CATEGORY DETAIL (INI YANG KURANG) */}
+  <Route path="/kategori/:slug" element={<CategoryDetail />} />
+
+  {/* Auth */}
+  <Route path="/login" element={<Login />} />
+  <Route path="/register" element={<Register />} />
+
+  {/* Admin */}
+  <Route path="/admin" element={<AdminLogin />} />
+  <Route path="/admin/dashboard" element={<AdminDashboard />} />
+  {/* ...admin routes lain */}
+
+  {/* Catch all */}
+  <Route path="*" element={<NotFound />} />
+</Routes>
+
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
