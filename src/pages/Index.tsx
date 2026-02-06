@@ -21,8 +21,8 @@ const Index = () => {
   {/* Hero Section */}
   <HeroSection />
   
-  {/* Service Icons Row */}
-  <ServiceIconsSection />
+{false && <ServiceIconsSection />}
+
 
   {/* Category Grid (Flowbite-style) */}
   <CategoryGridSection />
