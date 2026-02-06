@@ -277,55 +277,91 @@ export type Database = {
       }
       hajj_packages: {
         Row: {
+          agent_info: Json | null
           category: string
           created_at: string
+          cta_section: Json | null
           departure_year: number | null
           description: string | null
           duration_days: number
           facilities: Json | null
+          facilities_not_included: Json | null
+          gallery_images: Json | null
+          gallery_section: Json | null
+          hero_image: string | null
           id: string
           image_url: string | null
           is_active: boolean
           is_featured: boolean
           itinerary: Json | null
+          location_text: string | null
           name: string
+          period_text: string | null
           price: number
+          related_packages: Json | null
+          review_stats: Json | null
+          reviews_data: Json | null
+          subtitle: string | null
           updated_at: string
           visa_type: string | null
           waiting_period: string | null
         }
         Insert: {
+          agent_info?: Json | null
           category?: string
           created_at?: string
+          cta_section?: Json | null
           departure_year?: number | null
           description?: string | null
           duration_days: number
           facilities?: Json | null
+          facilities_not_included?: Json | null
+          gallery_images?: Json | null
+          gallery_section?: Json | null
+          hero_image?: string | null
           id?: string
           image_url?: string | null
           is_active?: boolean
           is_featured?: boolean
           itinerary?: Json | null
+          location_text?: string | null
           name: string
+          period_text?: string | null
           price: number
+          related_packages?: Json | null
+          review_stats?: Json | null
+          reviews_data?: Json | null
+          subtitle?: string | null
           updated_at?: string
           visa_type?: string | null
           waiting_period?: string | null
         }
         Update: {
+          agent_info?: Json | null
           category?: string
           created_at?: string
+          cta_section?: Json | null
           departure_year?: number | null
           description?: string | null
           duration_days?: number
           facilities?: Json | null
+          facilities_not_included?: Json | null
+          gallery_images?: Json | null
+          gallery_section?: Json | null
+          hero_image?: string | null
           id?: string
           image_url?: string | null
           is_active?: boolean
           is_featured?: boolean
           itinerary?: Json | null
+          location_text?: string | null
           name?: string
+          period_text?: string | null
           price?: number
+          related_packages?: Json | null
+          review_stats?: Json | null
+          reviews_data?: Json | null
+          subtitle?: string | null
           updated_at?: string
           visa_type?: string | null
           waiting_period?: string | null
@@ -687,56 +723,92 @@ export type Database = {
       }
       umrah_packages: {
         Row: {
+          agent_info: Json | null
           category: string
           created_at: string
+          cta_section: Json | null
           departure_date: string | null
           description: string | null
           duration_days: number
           facilities: Json | null
+          facilities_not_included: Json | null
+          gallery_images: Json | null
+          gallery_section: Json | null
+          hero_image: string | null
           id: string
           image_url: string | null
           is_active: boolean
           is_featured: boolean
           itinerary: Json | null
+          location_text: string | null
           name: string
+          period_text: string | null
           price: number
           rating: number | null
+          related_packages: Json | null
+          review_stats: Json | null
+          reviews_data: Json | null
+          subtitle: string | null
           total_reviews: number | null
           updated_at: string
         }
         Insert: {
+          agent_info?: Json | null
           category?: string
           created_at?: string
+          cta_section?: Json | null
           departure_date?: string | null
           description?: string | null
           duration_days: number
           facilities?: Json | null
+          facilities_not_included?: Json | null
+          gallery_images?: Json | null
+          gallery_section?: Json | null
+          hero_image?: string | null
           id?: string
           image_url?: string | null
           is_active?: boolean
           is_featured?: boolean
           itinerary?: Json | null
+          location_text?: string | null
           name: string
+          period_text?: string | null
           price: number
           rating?: number | null
+          related_packages?: Json | null
+          review_stats?: Json | null
+          reviews_data?: Json | null
+          subtitle?: string | null
           total_reviews?: number | null
           updated_at?: string
         }
         Update: {
+          agent_info?: Json | null
           category?: string
           created_at?: string
+          cta_section?: Json | null
           departure_date?: string | null
           description?: string | null
           duration_days?: number
           facilities?: Json | null
+          facilities_not_included?: Json | null
+          gallery_images?: Json | null
+          gallery_section?: Json | null
+          hero_image?: string | null
           id?: string
           image_url?: string | null
           is_active?: boolean
           is_featured?: boolean
           itinerary?: Json | null
+          location_text?: string | null
           name?: string
+          period_text?: string | null
           price?: number
           rating?: number | null
+          related_packages?: Json | null
+          review_stats?: Json | null
+          reviews_data?: Json | null
+          subtitle?: string | null
           total_reviews?: number | null
           updated_at?: string
         }

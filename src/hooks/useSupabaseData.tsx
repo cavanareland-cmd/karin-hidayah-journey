@@ -167,6 +167,44 @@ export function useHajjPackages(featured?: boolean) {
   );
 }
 
+// Get single Umrah Package by ID
+export function useUmrahPackageById(id: string | undefined) {
+  return useRealtimeQuery<Tables<"umrah_packages"> | null>(
+    ["umrah_package", id || ""],
+    "umrah_packages",
+    async () => {
+      if (!id) return null;
+      const { data, error } = await supabase
+        .from("umrah_packages")
+        .select("*")
+        .eq("id", id)
+        .single();
+      if (error && error.code !== "PGRST116") throw error;
+      return data;
+    },
+    !!id
+  );
+}
+
+// Get single Hajj Package by ID
+export function useHajjPackageById(id: string | undefined) {
+  return useRealtimeQuery<Tables<"hajj_packages"> | null>(
+    ["hajj_package", id || ""],
+    "hajj_packages",
+    async () => {
+      if (!id) return null;
+      const { data, error } = await supabase
+        .from("hajj_packages")
+        .select("*")
+        .eq("id", id)
+        .single();
+      if (error && error.code !== "PGRST116") throw error;
+      return data;
+    },
+    !!id
+  );
+}
+
 // Highlight Services
 export function useHighlightServices() {
   return useRealtimeQuery<Tables<"highlight_services">[]>(
