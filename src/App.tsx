@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import Index from "./pages/Index";
 import PackageDetail from "./pages/PackageDetail";
@@ -14,6 +14,7 @@ import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import CategoryDetail from "./pages/CategoryDetail";
+
 
 
 // Auth Pages
@@ -46,36 +47,35 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
-      <Routes>
-  <Route path="/" element={<Index />} />
+<HashRouter>
+  <Routes>
+    <Route path="/" element={<Index />} />
 
-  {/* Public Pages */}
-  <Route path="/umrah-packages" element={<UmrahPackages />} />
-  <Route path="/hajj-packages" element={<HajjPackages />} />
-  <Route path="/about-us" element={<AboutUs />} />
-  <Route path="/gallery" element={<Gallery />} />
-  <Route path="/blog" element={<Blog />} />
-  <Route path="/contact" element={<Contact />} />
-  <Route path="/package/:id" element={<PackageDetail />} />
+    {/* Public Pages */}
+    <Route path="/umrah-packages" element={<UmrahPackages />} />
+    <Route path="/hajj-packages" element={<HajjPackages />} />
+    <Route path="/about-us" element={<AboutUs />} />
+    <Route path="/gallery" element={<Gallery />} />
+    <Route path="/blog" element={<Blog />} />
+    <Route path="/contact" element={<Contact />} />
+    <Route path="/package/:id" element={<PackageDetail />} />
 
-  {/* 🔥 CATEGORY DETAIL (INI YANG KURANG) */}
-  <Route path="/kategori/:slug" element={<CategoryDetail />} />
+    {/* 🔥 CATEGORY DETAIL */}
+    <Route path="/kategori/:slug" element={<CategoryDetail />} />
 
-  {/* Auth */}
-  <Route path="/login" element={<Login />} />
-  <Route path="/register" element={<Register />} />
+    {/* Auth */}
+    <Route path="/login" element={<Login />} />
+    <Route path="/register" element={<Register />} />
 
-  {/* Admin */}
-  <Route path="/admin" element={<AdminLogin />} />
-  <Route path="/admin/dashboard" element={<AdminDashboard />} />
-  {/* ...admin routes lain */}
+    {/* Admin */}
+    <Route path="/admin" element={<AdminLogin />} />
+    <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
-  {/* Catch all */}
-  <Route path="*" element={<NotFound />} />
-</Routes>
+    {/* Catch all */}
+    <Route path="*" element={<NotFound />} />
+  </Routes>
+</HashRouter>
 
-        </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
   </QueryClientProvider>
