@@ -371,7 +371,14 @@ export async function submitContactMessage(data: {
   message: string;
 }) {
   const validated = contactMessageSchema.parse(data);
-  const { error } = await supabase.from("contact_messages").insert([validated]);
+  const payload = {
+    name: validated.name,
+    email: validated.email,
+    message: validated.message,
+    phone: validated.phone || null,
+    subject: validated.subject || null,
+  };
+  const { error } = await supabase.from("contact_messages").insert([payload]);
   if (error) throw error;
   return true;
 }
