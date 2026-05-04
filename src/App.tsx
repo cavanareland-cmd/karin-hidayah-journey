@@ -14,6 +14,7 @@ import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import CategoryDetail from "./pages/CategoryDetail";
+import ManasikUmrah from "./pages/categories/ManasikUmrah";
 
 
 
@@ -61,6 +62,7 @@ const App = () => (
     <Route path="/package/:id" element={<PackageDetail />} />
 
     {/* 🔥 CATEGORY DETAIL */}
+    <Route path="/kategori/manasik-umrah" element={<ManasikUmrah />} />
     <Route path="/kategori/:slug" element={<CategoryDetail />} />
 
     {/* Auth */}
