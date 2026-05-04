@@ -16,7 +16,7 @@ function useRealtimeQuery<T>(
     if (!enabled) return;
 
     const channel = supabase
-      .channel(`${tableName}_changes`)
+      .channel(`${tableName}_changes_${Math.random().toString(36).slice(2)}`)
       .on(
         "postgres_changes",
         { event: "*", schema: "public", table: tableName },
