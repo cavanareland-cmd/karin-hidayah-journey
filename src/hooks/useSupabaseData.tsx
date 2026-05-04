@@ -353,6 +353,16 @@ export function useSiteSettings() {
 }
 
 // Submit Contact Message
+import { z } from "zod";
+
+const contactMessageSchema = z.object({
+  name: z.string().trim().min(1, "Nama wajib diisi").max(100, "Nama maksimal 100 karakter"),
+  email: z.string().trim().email("Email tidak valid").max(255),
+  phone: z.string().trim().max(20).optional().or(z.literal("")),
+  subject: z.string().trim().max(200).optional().or(z.literal("")),
+  message: z.string().trim().min(5, "Pesan terlalu pendek").max(2000, "Pesan maksimal 2000 karakter"),
+});
+
 export async function submitContactMessage(data: {
   name: string;
   email: string;
@@ -360,7 +370,15 @@ export async function submitContactMessage(data: {
   subject?: string;
   message: string;
 }) {
-  const { error } = await supabase.from("contact_messages").insert([data]);
+  const validated = contactMessageSchema.parse(data);
+  const payload = {
+    name: validated.name,
+    email: validated.email,
+    message: validated.message,
+    phone: validated.phone || null,
+    subject: validated.subject || null,
+  };
+  const { error } = await supabase.from("contact_messages").insert([payload]);
   if (error) throw error;
   return true;
 }
