@@ -16,6 +16,7 @@ import NotFound from "./pages/NotFound";
 import CategoryDetail from "./pages/CategoryDetail";
 import ManasikUmrah from "./pages/categories/ManasikUmrah";
 import PerlengkapanIbadah from "./pages/categories/PerlengkapanIbadah";
+import EGuideMateri from "./pages/categories/EGuideMateri";
 
 
 
@@ -65,6 +66,7 @@ const App = () => (
     {/* 🔥 CATEGORY DETAIL */}
     <Route path="/kategori/manasik-umrah" element={<ManasikUmrah />} />
     <Route path="/kategori/perlengkapan-ibadah" element={<PerlengkapanIbadah />} />
+    <Route path="/kategori/e-guide-materi" element={<EGuideMateri />} />
     <Route path="/kategori/:slug" element={<CategoryDetail />} />
 
     {/* Auth */}
