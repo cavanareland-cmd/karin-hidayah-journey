@@ -17,6 +17,7 @@ import CategoryDetail from "./pages/CategoryDetail";
 import ManasikUmrah from "./pages/categories/ManasikUmrah";
 import PerlengkapanIbadah from "./pages/categories/PerlengkapanIbadah";
 import EGuideMateri from "./pages/categories/EGuideMateri";
+import AktivitasJamaah from "./pages/categories/AktivitasJamaah";
 
 
 
@@ -67,6 +68,7 @@ const App = () => (
     <Route path="/kategori/manasik-umrah" element={<ManasikUmrah />} />
     <Route path="/kategori/perlengkapan-ibadah" element={<PerlengkapanIbadah />} />
     <Route path="/kategori/e-guide-materi" element={<EGuideMateri />} />
+    <Route path="/kategori/aktivitas-jamaah" element={<AktivitasJamaah />} />
     <Route path="/kategori/:slug" element={<CategoryDetail />} />
 
     {/* Auth */}
