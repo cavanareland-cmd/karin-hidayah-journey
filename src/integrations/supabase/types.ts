@@ -161,6 +161,45 @@ export type Database = {
         }
         Relationships: []
       }
+      category_pages: {
+        Row: {
+          created_at: string
+          cta: Json
+          extra: Json
+          features: Json
+          hero: Json
+          id: string
+          is_active: boolean
+          items: Json
+          page_key: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          cta?: Json
+          extra?: Json
+          features?: Json
+          hero?: Json
+          id?: string
+          is_active?: boolean
+          items?: Json
+          page_key: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          cta?: Json
+          extra?: Json
+          features?: Json
+          hero?: Json
+          id?: string
+          is_active?: boolean
+          items?: Json
+          page_key?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       contact_messages: {
         Row: {
           created_at: string
