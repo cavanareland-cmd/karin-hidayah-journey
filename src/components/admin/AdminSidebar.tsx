@@ -36,6 +36,10 @@ const menuItems = [
   { icon: Star, label: "Explore Section", path: "/admin/explore" },
   { icon: ShoppingBag, label: "Produk", path: "/admin/products" },
   { icon: Users, label: "Tim & About Us", path: "/admin/about" },
+  { icon: LayoutGrid, label: "Manasik Umrah", path: "/admin/manasik-umrah" },
+  { icon: LayoutGrid, label: "Perlengkapan Ibadah", path: "/admin/perlengkapan-ibadah" },
+  { icon: LayoutGrid, label: "E-Guide & Materi", path: "/admin/e-guide-materi" },
+  { icon: LayoutGrid, label: "Aktivitas Jamaah", path: "/admin/aktivitas-jamaah" },
   { icon: Settings, label: "Pengaturan", path: "/admin/settings" },
 ];
 
