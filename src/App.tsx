@@ -42,6 +42,10 @@ import AdminProducts from "./pages/admin/AdminProducts";
 import AdminAbout from "./pages/admin/AdminAbout";
 import AdminArrangementSection from "./pages/admin/AdminArrangementSection";
 import AdminExploreSection from "./pages/admin/AdminExploreSection";
+import AdminManasikUmrah from "./pages/admin/AdminManasikUmrah";
+import AdminPerlengkapanIbadah from "./pages/admin/AdminPerlengkapanIbadah";
+import AdminEGuideMateri from "./pages/admin/AdminEGuideMateri";
+import AdminAktivitasJamaah from "./pages/admin/AdminAktivitasJamaah";
 
 const queryClient = new QueryClient();
 
@@ -78,6 +82,24 @@ const App = () => (
     {/* Admin */}
     <Route path="/admin" element={<AdminLogin />} />
     <Route path="/admin/dashboard" element={<AdminDashboard />} />
+    <Route path="/admin/homepage" element={<AdminHomepage />} />
+    <Route path="/admin/arrangement" element={<AdminArrangementSection />} />
+    <Route path="/admin/umrah-packages" element={<AdminUmrahPackages />} />
+    <Route path="/admin/hajj-packages" element={<AdminHajjPackages />} />
+    <Route path="/admin/blog" element={<AdminBlog />} />
+    <Route path="/admin/gallery" element={<AdminGallery />} />
+    <Route path="/admin/messages" element={<AdminMessages />} />
+    <Route path="/admin/service-icons" element={<AdminServiceIcons />} />
+    <Route path="/admin/prayer-times" element={<AdminPrayerTimes />} />
+    <Route path="/admin/explore" element={<AdminExploreSection />} />
+    <Route path="/admin/highlights" element={<AdminHighlights />} />
+    <Route path="/admin/products" element={<AdminProducts />} />
+    <Route path="/admin/about" element={<AdminAbout />} />
+    <Route path="/admin/settings" element={<AdminSettings />} />
+    <Route path="/admin/manasik-umrah" element={<AdminManasikUmrah />} />
+    <Route path="/admin/perlengkapan-ibadah" element={<AdminPerlengkapanIbadah />} />
+    <Route path="/admin/e-guide-materi" element={<AdminEGuideMateri />} />
+    <Route path="/admin/aktivitas-jamaah" element={<AdminAktivitasJamaah />} />
 
     {/* Catch all */}
     <Route path="*" element={<NotFound />} />
