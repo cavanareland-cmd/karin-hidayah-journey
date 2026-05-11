@@ -1,29 +1,35 @@
 import { Link, useParams } from "react-router-dom";
+import { useCategoryPage } from "@/hooks/useCategoryPage";
+import CategoryPageRenderer from "@/components/CategoryPageRenderer";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function CategoryDetail() {
   const { slug } = useParams<{ slug: string }>();
+  const { data, isLoading } = useCategoryPage(slug || "");
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-muted-foreground">
+        Memuat...
+      </div>
+    );
+  }
+
+  if (data) return <CategoryPageRenderer pageKey={slug!} />;
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-10">
-      <div className="mb-6 flex items-center gap-3">
-        <Link
-          to="/"
-          className="text-sm underline opacity-80 hover:opacity-100"
-        >
-          ← Back
-        </Link>
-        <h1 className="text-2xl font-semibold">Kategori</h1>
-      </div>
-
-      <div className="rounded-xl border p-5">
-        <p className="text-sm opacity-70">Slug kategori:</p>
-        <p className="mt-1 text-lg font-medium">{slug ?? "-"}</p>
-
-        <p className="mt-4 text-sm opacity-70">
-          Halaman ini masih placeholder. Nanti kamu bisa isi dengan daftar paket
-          berdasarkan kategori.
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main className="mx-auto max-w-3xl px-4 py-20 text-center">
+        <h1 className="text-3xl font-bold mb-4">Kategori belum tersedia</h1>
+        <p className="text-muted-foreground mb-2">Slug: <code>{slug}</code></p>
+        <p className="text-muted-foreground mb-6">
+          Konten kategori ini belum dibuat di CMS.
         </p>
-      </div>
-    </main>
+        <Link to="/" className="text-primary underline">← Kembali ke Beranda</Link>
+      </main>
+      <Footer />
+    </div>
   );
 }
