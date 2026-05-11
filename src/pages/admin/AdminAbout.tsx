@@ -24,7 +24,8 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Pencil, Trash2, Loader2, Users } from "lucide-react";
+import { Plus, Pencil, Trash2, Loader2, Users, Save } from "lucide-react";
+import AboutContentEditor from "@/components/admin/AboutContentEditor";
 
 interface TeamMember {
   id: string;
