@@ -165,10 +165,16 @@ const AdminAbout = () => {
           <p className="text-muted-foreground">Kelola informasi tim dan halaman tentang kami</p>
         </div>
 
-        <Tabs defaultValue="team">
+        <Tabs defaultValue="content">
           <TabsList>
+            <TabsTrigger value="content">Konten Halaman</TabsTrigger>
             <TabsTrigger value="team">Tim Kami</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="content">
+            <AboutContentEditor />
+          </TabsContent>
+
 
           <TabsContent value="team" className="space-y-6">
             <div className="flex justify-between items-center">
