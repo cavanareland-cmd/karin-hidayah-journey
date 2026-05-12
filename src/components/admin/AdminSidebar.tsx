@@ -17,6 +17,9 @@ import {
   ChevronLeft,
   ChevronRight,
   LayoutGrid,
+  Navigation,
+  PanelBottom,
+  ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
