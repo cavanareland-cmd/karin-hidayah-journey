@@ -17,10 +17,10 @@ const Navbar = () => {
   const { user, isLoading, signOut } = useAuth();
   const navigate = useNavigate();
   
-  // Fetch dynamic menu and branding
-  const { data: navigationMenu } = useNavigationMenu();
+  // Fetch dynamic menu (already ordered by order_index in the hook) and branding
+  const { data: navigationMenu, isLoading: menuLoading, isError: menuError } = useNavigationMenu();
   const { data: homepageSettings } = useHomepageSettings();
-  
+
   const logoSettings = homepageSettings?.find((s) => s.section_key === "logo");
   const brandName = logoSettings?.title || "Karin Hidayah Tour";
 
@@ -29,18 +29,21 @@ const Navbar = () => {
     navigate("/");
   };
 
-  // Use dynamic menu or fallback
-  const menuItems = navigationMenu && navigationMenu.length > 0
-    ? navigationMenu.map((item) => ({ label: item.label, href: item.path, isRoute: true }))
-    : [
-        { label: "Beranda", href: "/", isRoute: true },
-        { label: "Paket Umrah", href: "/umrah-packages", isRoute: true },
-        { label: "Paket Haji", href: "/hajj-packages", isRoute: true },
-        { label: "Tentang Kami", href: "/about-us", isRoute: true },
-        { label: "Galleri", href: "/gallery", isRoute: true },
-        { label: "Blog", href: "/blog", isRoute: true },
-        { label: "Kontak", href: "/contact", isRoute: true },
-      ];
+  const FALLBACK_MENU = [
+    { label: "Beranda", href: "/", isRoute: true },
+    { label: "Paket Umrah", href: "/umrah-packages", isRoute: true },
+    { label: "Paket Haji", href: "/hajj-packages", isRoute: true },
+    { label: "Tentang Kami", href: "/about-us", isRoute: true },
+    { label: "Galleri", href: "/gallery", isRoute: true },
+    { label: "Blog", href: "/blog", isRoute: true },
+    { label: "Kontak", href: "/contact", isRoute: true },
+  ];
+
+  // Use realtime DB menu when available; fall back to defaults on empty/error
+  const menuItems =
+    navigationMenu && navigationMenu.length > 0
+      ? navigationMenu.map((item) => ({ label: item.label, href: item.path, isRoute: true }))
+      : FALLBACK_MENU;
 
   return (
     <nav className="sticky top-0 z-40 bg-white border-b border-border/50">
