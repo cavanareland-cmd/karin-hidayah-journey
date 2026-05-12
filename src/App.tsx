@@ -46,6 +46,9 @@ import AdminManasikUmrah from "./pages/admin/AdminManasikUmrah";
 import AdminPerlengkapanIbadah from "./pages/admin/AdminPerlengkapanIbadah";
 import AdminEGuideMateri from "./pages/admin/AdminEGuideMateri";
 import AdminAktivitasJamaah from "./pages/admin/AdminAktivitasJamaah";
+import AdminFooter from "./pages/admin/AdminFooter";
+import AdminNavigation from "./pages/admin/AdminNavigation";
+import AdminUsers from "./pages/admin/AdminUsers";
 
 const queryClient = new QueryClient();
 
@@ -100,6 +103,9 @@ const App = () => (
     <Route path="/admin/perlengkapan-ibadah" element={<AdminPerlengkapanIbadah />} />
     <Route path="/admin/e-guide-materi" element={<AdminEGuideMateri />} />
     <Route path="/admin/aktivitas-jamaah" element={<AdminAktivitasJamaah />} />
+    <Route path="/admin/footer" element={<AdminFooter />} />
+    <Route path="/admin/navigation" element={<AdminNavigation />} />
+    <Route path="/admin/users" element={<AdminUsers />} />
 
     {/* Catch all */}
     <Route path="*" element={<NotFound />} />

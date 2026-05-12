@@ -17,6 +17,9 @@ import {
   ChevronLeft,
   ChevronRight,
   LayoutGrid,
+  Navigation,
+  PanelBottom,
+  ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -40,6 +43,9 @@ const menuItems = [
   { icon: LayoutGrid, label: "Perlengkapan Ibadah", path: "/admin/perlengkapan-ibadah" },
   { icon: LayoutGrid, label: "E-Guide & Materi", path: "/admin/e-guide-materi" },
   { icon: LayoutGrid, label: "Aktivitas Jamaah", path: "/admin/aktivitas-jamaah" },
+  { icon: Navigation, label: "Menu Navigasi", path: "/admin/navigation" },
+  { icon: PanelBottom, label: "Footer", path: "/admin/footer" },
+  { icon: ShieldCheck, label: "Pengguna & Peran", path: "/admin/users" },
   { icon: Settings, label: "Pengaturan", path: "/admin/settings" },
 ];
 
