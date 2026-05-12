@@ -17,10 +17,10 @@ const Navbar = () => {
   const { user, isLoading, signOut } = useAuth();
   const navigate = useNavigate();
   
-  // Fetch dynamic menu and branding
-  const { data: navigationMenu } = useNavigationMenu();
+  // Fetch dynamic menu (already ordered by order_index in the hook) and branding
+  const { data: navigationMenu, isLoading: menuLoading, isError: menuError } = useNavigationMenu();
   const { data: homepageSettings } = useHomepageSettings();
-  
+
   const logoSettings = homepageSettings?.find((s) => s.section_key === "logo");
   const brandName = logoSettings?.title || "Karin Hidayah Tour";
 
@@ -29,18 +29,21 @@ const Navbar = () => {
     navigate("/");
   };
 
-  // Use dynamic menu or fallback
-  const menuItems = navigationMenu && navigationMenu.length > 0
-    ? navigationMenu.map((item) => ({ label: item.label, href: item.path, isRoute: true }))
-    : [
-        { label: "Beranda", href: "/", isRoute: true },
-        { label: "Paket Umrah", href: "/umrah-packages", isRoute: true },
-        { label: "Paket Haji", href: "/hajj-packages", isRoute: true },
-        { label: "Tentang Kami", href: "/about-us", isRoute: true },
-        { label: "Galleri", href: "/gallery", isRoute: true },
-        { label: "Blog", href: "/blog", isRoute: true },
-        { label: "Kontak", href: "/contact", isRoute: true },
-      ];
+  const FALLBACK_MENU = [
+    { label: "Beranda", href: "/", isRoute: true },
+    { label: "Paket Umrah", href: "/umrah-packages", isRoute: true },
+    { label: "Paket Haji", href: "/hajj-packages", isRoute: true },
+    { label: "Tentang Kami", href: "/about-us", isRoute: true },
+    { label: "Galleri", href: "/gallery", isRoute: true },
+    { label: "Blog", href: "/blog", isRoute: true },
+    { label: "Kontak", href: "/contact", isRoute: true },
+  ];
+
+  // Use realtime DB menu when available; fall back to defaults on empty/error
+  const menuItems =
+    navigationMenu && navigationMenu.length > 0
+      ? navigationMenu.map((item) => ({ label: item.label, href: item.path, isRoute: true }))
+      : FALLBACK_MENU;
 
   return (
     <nav className="sticky top-0 z-40 bg-white border-b border-border/50">
@@ -55,24 +58,34 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-6">
-            {menuItems.map((item) =>
-              item.isRoute ? (
-                <Link
-                  key={item.label}
-                  to={item.href}
-                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ) : (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-                >
-                  {item.label}
-                </a>
+          <div className="hidden lg:flex items-center gap-6 min-h-[24px]">
+            {menuLoading && !navigationMenu ? (
+              <div className="flex items-center gap-4">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <div key={i} className="h-4 w-16 bg-muted rounded animate-pulse" />
+                ))}
+              </div>
+            ) : menuError && !navigationMenu ? (
+              <span className="text-xs text-muted-foreground">Gagal memuat menu</span>
+            ) : (
+              menuItems.map((item) =>
+                item.isRoute ? (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                )
               )
             )}
           </div>
