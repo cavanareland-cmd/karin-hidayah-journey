@@ -103,6 +103,9 @@ const App = () => (
     <Route path="/admin/perlengkapan-ibadah" element={<AdminPerlengkapanIbadah />} />
     <Route path="/admin/e-guide-materi" element={<AdminEGuideMateri />} />
     <Route path="/admin/aktivitas-jamaah" element={<AdminAktivitasJamaah />} />
+    <Route path="/admin/footer" element={<AdminFooter />} />
+    <Route path="/admin/navigation" element={<AdminNavigation />} />
+    <Route path="/admin/users" element={<AdminUsers />} />
 
     {/* Catch all */}
     <Route path="*" element={<NotFound />} />
