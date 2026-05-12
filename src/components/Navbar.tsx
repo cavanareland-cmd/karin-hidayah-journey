@@ -58,24 +58,34 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-6">
-            {menuItems.map((item) =>
-              item.isRoute ? (
-                <Link
-                  key={item.label}
-                  to={item.href}
-                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ) : (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-                >
-                  {item.label}
-                </a>
+          <div className="hidden lg:flex items-center gap-6 min-h-[24px]">
+            {menuLoading && !navigationMenu ? (
+              <div className="flex items-center gap-4">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <div key={i} className="h-4 w-16 bg-muted rounded animate-pulse" />
+                ))}
+              </div>
+            ) : menuError && !navigationMenu ? (
+              <span className="text-xs text-muted-foreground">Gagal memuat menu</span>
+            ) : (
+              menuItems.map((item) =>
+                item.isRoute ? (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                )
               )
             )}
           </div>
