@@ -46,6 +46,9 @@ import AdminManasikUmrah from "./pages/admin/AdminManasikUmrah";
 import AdminPerlengkapanIbadah from "./pages/admin/AdminPerlengkapanIbadah";
 import AdminEGuideMateri from "./pages/admin/AdminEGuideMateri";
 import AdminAktivitasJamaah from "./pages/admin/AdminAktivitasJamaah";
+import AdminFooter from "./pages/admin/AdminFooter";
+import AdminNavigation from "./pages/admin/AdminNavigation";
+import AdminUsers from "./pages/admin/AdminUsers";
 
 const queryClient = new QueryClient();
 
