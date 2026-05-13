@@ -181,6 +181,15 @@ const Navbar = () => {
               )
             )}
             <div className="pt-3 border-t border-border space-y-2">
+              {/* Mobile Admin CMS link */}
+              <Link
+                to="/admin"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-dashed border-border hover:bg-muted transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                <Shield className="w-4 h-4 text-muted-foreground" />
+                <span className="text-sm font-medium text-muted-foreground">CMS Admin</span>
+              </Link>
               {user ? (
                 <>
                   <Link
