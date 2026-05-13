@@ -92,6 +92,16 @@ const Navbar = () => {
 
           {/* Right Actions */}
           <div className="flex items-center gap-3">
+            {/* Admin CMS link */}
+            <Link
+              to="/admin"
+              className="hidden lg:flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-primary transition-colors px-2 py-1 rounded-md hover:bg-muted"
+              title="CMS Admin"
+            >
+              <Shield className="w-3.5 h-3.5" />
+              CMS
+            </Link>
+
             {isLoading ? (
               <Loader2 className="w-4 h-4 animate-spin text-muted-foreground" />
             ) : user ? (
