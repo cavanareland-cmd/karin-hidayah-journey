@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Menu, X, User, LogOut, Loader2 } from "lucide-react";
+import { Menu, X, User, LogOut, Loader2, Shield } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigationMenu, useHomepageSettings } from "@/hooks/useSupabaseData";
 import {
