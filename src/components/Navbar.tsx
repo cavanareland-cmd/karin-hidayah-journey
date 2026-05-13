@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Menu, X, User, LogOut, Loader2 } from "lucide-react";
+import { Menu, X, User, LogOut, Loader2, Shield } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigationMenu, useHomepageSettings } from "@/hooks/useSupabaseData";
 import {
@@ -92,6 +92,16 @@ const Navbar = () => {
 
           {/* Right Actions */}
           <div className="flex items-center gap-3">
+            {/* Admin CMS link */}
+            <Link
+              to="/admin"
+              className="hidden lg:flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-primary transition-colors px-2 py-1 rounded-md hover:bg-muted"
+              title="CMS Admin"
+            >
+              <Shield className="w-3.5 h-3.5" />
+              CMS
+            </Link>
+
             {isLoading ? (
               <Loader2 className="w-4 h-4 animate-spin text-muted-foreground" />
             ) : user ? (
@@ -171,6 +181,15 @@ const Navbar = () => {
               )
             )}
             <div className="pt-3 border-t border-border space-y-2">
+              {/* Mobile Admin CMS link */}
+              <Link
+                to="/admin"
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-dashed border-border hover:bg-muted transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                <Shield className="w-4 h-4 text-muted-foreground" />
+                <span className="text-sm font-medium text-muted-foreground">CMS Admin</span>
+              </Link>
               {user ? (
                 <>
                   <Link
