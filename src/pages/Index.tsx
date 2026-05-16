@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import CategoryGridSection from "@/components/CategoryGridSection";
-import FeaturesSection from "@/components/FeaturesSection";
+// import FeaturesSection from "@/components/FeaturesSection"; // Dinonaktifkan
 import ArrangementSection from "@/components/ArrangementSection";
 import PrayerTimeSection from "@/components/PrayerTimeSection";
 import HajjPackagesSection from "@/components/HajjPackagesSection";
@@ -24,8 +24,7 @@ const Index = () => {
         {/* Category Grid (pengganti icon lama) */}
         <CategoryGridSection />
 
-        {/* Features Umrah & Haji */}
-        <FeaturesSection />
+        {/* Features Umrah & Haji (Pendampingan Terintegrasi) sudah dihapus dari sini */}
 
         {/* Arrangement */}
         <ArrangementSection />
