@@ -88,14 +88,14 @@ const Navbar = () => {
                     </a>
                   )
                 )}
-                {/* TAMBAHAN MENU EKSKLUSIF COMPANY PROFILE (DESKTOP) */}
+                {/* MENU EKSKLUSIF BRAND KIT (DESKTOP) */}
                 <a
                   href="https://profile.karinhidayahtour.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
                 >
-                  Company Profile
+                  Brand Kit
                 </a>
               </>
             )}
@@ -192,7 +192,7 @@ const Navbar = () => {
               )
             )}
             
-            {/* TAMBAHAN MENU EKSKLUSIF COMPANY PROFILE (MOBILE) */}
+            {/* MENU EKSKLUSIF BRAND KIT (MOBILE) */}
             <a
               href="https://profile.karinhidayahtour.com/"
               target="_blank"
@@ -200,7 +200,7 @@ const Navbar = () => {
               className="block py-2 text-foreground/70 hover:text-primary transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              Company Profile
+              Brand Kit
             </a>
 
             <div className="pt-3 border-t border-border space-y-2">
