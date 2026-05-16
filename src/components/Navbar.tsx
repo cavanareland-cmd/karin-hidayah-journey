@@ -33,7 +33,8 @@ const Navbar = () => {
     { label: "Beranda", href: "/", isRoute: true },
     { label: "Paket Umrah", href: "/umrah-packages", isRoute: true },
     { label: "Paket Haji", href: "/hajj-packages", isRoute: true },
-    { label: "Tentang Kami", href: "/about-us", isRoute: true },
+    // Menu Tentang Kami diganti secara hardcode menjadi Company Profile
+    { label: "Company Profile", href: "https://profile.karinhidayahtour.com/company-profile", isRoute: false },
     { label: "Galleri", href: "/gallery", isRoute: true },
     { label: "Blog", href: "/blog", isRoute: true },
     { label: "Kontak", href: "/contact", isRoute: true },
@@ -42,7 +43,16 @@ const Navbar = () => {
   // Use realtime DB menu when available; fall back to defaults on empty/error
   const menuItems =
     navigationMenu && navigationMenu.length > 0
-      ? navigationMenu.map((item) => ({ label: item.label, href: item.path, isRoute: true }))
+      ? navigationMenu.map((item) => {
+          // INTERCEPTOR: Jika CMS Supabase masih mengirimkan menu "/about-us" atau "Tentang Kami", 
+          // paksa ganti menjadi link Company Profile yang baru
+          if (item.path === "/about-us" || item.label.toLowerCase() === "tentang kami") {
+            return { label: "Company Profile", href: "https://profile.karinhidayahtour.com/company-profile", isRoute: false };
+          }
+          // Cek otomatis apakah link mengarah ke website luar (http) atau lokal
+          const isExternal = item.path.startsWith("http");
+          return { label: item.label, href: item.path, isRoute: !isExternal };
+        })
       : FALLBACK_MENU;
 
   return (
@@ -82,6 +92,8 @@ const Navbar = () => {
                     <a
                       key={item.label}
                       href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
                     >
                       {item.label}
@@ -184,6 +196,8 @@ const Navbar = () => {
                 <a
                   key={item.label}
                   href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block py-2 text-foreground/70 hover:text-primary transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
