@@ -68,25 +68,36 @@ const Navbar = () => {
             ) : menuError && !navigationMenu ? (
               <span className="text-xs text-muted-foreground">Gagal memuat menu</span>
             ) : (
-              menuItems.map((item) =>
-                item.isRoute ? (
-                  <Link
-                    key={item.label}
-                    to={item.href}
-                    className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-                  >
-                    {item.label}
-                  </a>
-                )
-              )
+              <>
+                {menuItems.map((item) =>
+                  item.isRoute ? (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                  )
+                )}
+                {/* TAMBAHAN MENU EKSKLUSIF COMPANY PROFILE (DESKTOP) */}
+                <a
+                  href="https://profile.karinhidayahtour.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                >
+                  Company Profile
+                </a>
+              </>
             )}
           </div>
 
@@ -180,6 +191,18 @@ const Navbar = () => {
                 </a>
               )
             )}
+            
+            {/* TAMBAHAN MENU EKSKLUSIF COMPANY PROFILE (MOBILE) */}
+            <a
+              href="https://profile.karinhidayahtour.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block py-2 text-foreground/70 hover:text-primary transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Company Profile
+            </a>
+
             <div className="pt-3 border-t border-border space-y-2">
               {/* Mobile Admin CMS link */}
               <Link
