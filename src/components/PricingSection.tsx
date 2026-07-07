@@ -1,76 +1,158 @@
+import { Link } from "react-router-dom";
+import { Calendar, Plane, Users, MapPin, Star, ArrowRight } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useUmrahPackages } from "@/hooks/useSupabaseData";
+import umrahImg from "@/assets/umrah-package.jpg";
+
+const formatPrice = (price: number) =>
+  new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(price);
+
+const formatDate = (dateString: string | null) => {
+  if (!dateString) return "Flexible";
+  return new Date(dateString).toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+};
+
 const PricingSection = () => {
+  const { data: packages, isLoading } = useUmrahPackages();
+
+  const displayPackages = (packages || []).slice(0, 3);
+
   return (
-    <section id="pricing" className="py-24 px-6 bg-slate-50">
-      <p className="text-center uppercase font-semibold text-indigo-600">
-        Paket Layanan
-      </p>
-
-      <h2 className="text-3xl md:text-4xl font-bold text-center mt-3">
-        Pilihan Paket Umrah & Haji
-      </h2>
-
-      <p className="text-center text-slate-500 max-w-xl mx-auto mt-4">
-        Pilih paket yang sesuai dengan kebutuhan ibadah dan kenyamanan Anda.
-      </p>
-
-      <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-
-        {/* Paket Reguler */}
-        <div className="border rounded-xl p-8 bg-white">
-          <h3 className="font-semibold text-lg">Umrah Reguler</h3>
-          <p className="text-4xl font-bold mt-4">
-            Mulai
-            <span className="block text-2xl mt-1">Rp29.000.000</span>
+    <section className="py-16 px-4 lg:px-8 bg-muted/30">
+      <div className="container mx-auto">
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <p className="text-primary font-semibold tracking-wider uppercase text-sm mb-2">
+            Paket Layanan
           </p>
-
-          <ul className="mt-6 space-y-3 text-sm text-slate-600">
-            <li>✔ Tiket & hotel standar</li>
-            <li>✔ Manasik sebelum keberangkatan</li>
-            <li>✔ Pembimbing ibadah</li>
-          </ul>
-
-          <button className="mt-8 w-full py-3 border rounded-md hover:bg-slate-100">
-            Lihat Detail
-          </button>
+          <h2 className="text-3xl lg:text-4xl font-bold font-serif mb-3">
+            Pilihan Paket Umrah &amp; Haji
+          </h2>
+          <p className="text-muted-foreground">
+            Pilih paket yang sesuai dengan kebutuhan ibadah dan kenyamanan Anda.
+          </p>
         </div>
 
-        {/* Paket VIP */}
-        <div className="border-2 border-indigo-600 rounded-xl p-8 bg-white scale-105">
-          <h3 className="font-semibold text-lg">Umrah VIP</h3>
-          <p className="text-4xl font-bold mt-4">
-            Mulai
-            <span className="block text-2xl mt-1">Rp39.000.000</span>
-          </p>
+        {/* Packages Grid */}
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <div key={i} className="bg-card rounded-2xl overflow-hidden border border-border">
+                <Skeleton className="h-52 w-full" />
+                <div className="p-5 space-y-3">
+                  <Skeleton className="h-6 w-3/4" />
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-10 w-full" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : displayPackages.length === 0 ? (
+          <div className="text-center py-16">
+            <p className="text-muted-foreground text-lg">Belum ada paket umrah yang tersedia</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {displayPackages.map((pkg) => {
+              const facilities = (pkg.facilities as string[]) || [];
+              return (
+                <Link
+                  key={pkg.id}
+                  to={`/package/${pkg.id}`}
+                  className="bg-card rounded-2xl overflow-hidden border border-border hover:shadow-xl transition-all duration-300 group flex flex-col"
+                >
+                  <div className="relative h-52 overflow-hidden">
+                    <img
+                      src={pkg.image_url || umrahImg}
+                      alt={pkg.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full uppercase">
+                        {pkg.category}
+                      </span>
+                    </div>
+                    <div className="absolute top-3 right-3 flex items-center gap-1 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full">
+                      <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
+                      <span className="text-xs font-semibold">{pkg.rating || 5.0}</span>
+                      <span className="text-xs text-muted-foreground">({pkg.total_reviews || 0})</span>
+                    </div>
+                  </div>
 
-          <ul className="mt-6 space-y-3 text-sm text-slate-600">
-            <li>✔ Hotel dekat Masjid</li>
-            <li>✔ Transportasi nyaman</li>
-            <li>✔ Pendampingan intensif</li>
-          </ul>
+                  <div className="p-5 flex flex-col flex-1">
+                    <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                      {pkg.name}
+                    </h3>
 
-          <button className="mt-8 w-full py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
-            Pilih Paket
-          </button>
-        </div>
+                    <div className="grid grid-cols-2 gap-3 mb-4">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Calendar className="w-4 h-4 text-primary" />
+                        <span>{pkg.duration_days} Hari</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Plane className="w-4 h-4 text-primary" />
+                        <span>{formatDate(pkg.departure_date)}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Users className="w-4 h-4 text-primary" />
+                        <span>Kuota Tersedia</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <MapPin className="w-4 h-4 text-primary" />
+                        <span>Makkah &amp; Madinah</span>
+                      </div>
+                    </div>
 
-        {/* Paket Haji */}
-        <div className="border rounded-xl p-8 bg-white">
-          <h3 className="font-semibold text-lg">Haji Khusus</h3>
-          <p className="text-4xl font-bold mt-4">
-            Kuota Terbatas
-          </p>
+                    {facilities.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {facilities.slice(0, 3).map((facility, idx) => (
+                          <span
+                            key={idx}
+                            className="px-2 py-1 bg-secondary/50 text-secondary-foreground text-xs rounded-md line-clamp-1"
+                          >
+                            {facility}
+                          </span>
+                        ))}
+                      </div>
+                    )}
 
-          <ul className="mt-6 space-y-3 text-sm text-slate-600">
-            <li>✔ Bimbingan eksklusif</li>
-            <li>✔ Akomodasi premium</li>
-            <li>✔ Tim pendamping khusus</li>
-          </ul>
+                    <div className="flex items-center justify-between pt-4 mt-auto border-t border-border">
+                      <div>
+                        <p className="text-xl font-bold text-primary">{formatPrice(pkg.price)}</p>
+                        <p className="text-xs text-muted-foreground">/orang</p>
+                      </div>
+                      <div className="px-5 py-2.5 bg-primary text-primary-foreground rounded-xl font-medium text-sm group-hover:bg-primary/90 transition-colors">
+                        Pesan Sekarang
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        )}
 
-          <button className="mt-8 w-full py-3 border rounded-md hover:bg-slate-100">
-            Hubungi Kami
-          </button>
-        </div>
-
+        {/* View All CTA */}
+        {displayPackages.length > 0 && (
+          <div className="text-center mt-10">
+            <Link
+              to="/umrah-packages"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors"
+            >
+              Lihat Semua Paket
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
