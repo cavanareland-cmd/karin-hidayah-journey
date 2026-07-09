@@ -22,8 +22,7 @@ const iconMap: Record<string, any> = {
 };
 const getIcon = (n: string) => iconMap[n] || Check;
 
-const WHATSAPP_NUMBER = "6281131077070";
-const WHATSAPP_DISPLAY = "0811-3107-707";
+const DEFAULT_WHATSAPP_NUMBER = "6281131077070";
 
 const defaultItinerary = [
   { day: 1, title: "Keberangkatan Surabaya → Jeddah", description: "Berkumpul di Bandara Juanda T2. Briefing manasik terakhir dan proses imigrasi menuju Jeddah bersama muthawwif." },
