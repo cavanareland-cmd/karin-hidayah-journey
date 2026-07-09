@@ -221,7 +221,7 @@ const PackageDetail = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/40 to-secondary/10" />
                 <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8">
                   <span className="inline-block px-3 py-1 bg-primary text-white text-[10px] tracking-widest font-bold uppercase mb-3 border border-accent/60 rounded-sm">
-                    Izin PPIU · 04042300022560003
+                    Izin PPIU · {permitNumber}
                   </span>
                   <h1 className="font-['DM_Serif_Display'] text-3xl md:text-5xl lg:text-6xl leading-none text-accent">
                     {name}
@@ -234,10 +234,10 @@ const PackageDetail = () => {
               <div className="grid grid-cols-2 md:grid-cols-5 gap-px bg-accent/20 border border-accent/20 mt-6 rounded-lg overflow-hidden">
                 {[
                   { label: "Durasi", value: `${duration} HARI` },
-                  { label: "Maskapai", value: "LION AIR" },
-                  { label: "Rute", value: "SUB-JED" },
-                  { label: "Deposit", value: "RP 5 JUTA", accent: true },
-                  { label: "Berangkat", value: "19 NOV" },
+                  { label: "Maskapai", value: airline.toUpperCase() },
+                  { label: "Rute", value: route.toUpperCase() },
+                  { label: "Deposit", value: `RP ${(depositAmount / 1_000_000).toFixed(0)} JUTA`, accent: true },
+                  { label: "Berangkat", value: new Date(departureDate).toLocaleDateString("id-ID", { day: "numeric", month: "short" }).toUpperCase() },
                 ].map((m, i) => (
                   <div key={i} className="bg-secondary/80 backdrop-blur p-4 text-center">
                     <p className="text-[9px] uppercase tracking-[0.2em] text-accent mb-1">{m.label}</p>
