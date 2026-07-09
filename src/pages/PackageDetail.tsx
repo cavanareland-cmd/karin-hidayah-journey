@@ -450,7 +450,7 @@ const PackageDetail = () => {
                     <span className="flex items-center gap-2 text-sm text-white/60">
                       <Ticket className="w-4 h-4 text-accent" /> DP Booking
                     </span>
-                    <span className="font-bold text-accent text-sm">Rp 5.000.000</span>
+                    <span className="font-bold text-accent text-sm">Rp {new Intl.NumberFormat("id-ID").format(depositAmount)}</span>
                   </div>
                   <div className="flex items-center justify-between py-2.5">
                     <span className="text-sm text-white/60">Sisa Kursi</span>
