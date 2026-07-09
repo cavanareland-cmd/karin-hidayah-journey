@@ -480,14 +480,10 @@ const PackageDetail = () => {
 
               {/* Trust Badges */}
               <div className="grid grid-cols-3 gap-2">
-                {[
-                  { title: "KEMENAG", sub: "Terakreditasi" },
-                  { title: "5 PASTI", sub: "Umroh Resmi" },
-                  { title: "SISKOPATUH", sub: "Terdaftar" },
-                ].map((b, i) => (
+                {trustBadges.slice(0, 3).map((b: any, i: number) => (
                   <div key={i} className="bg-secondary/60 p-3 text-center border border-accent/10 rounded-lg">
                     <div className="text-accent font-bold text-[11px] mb-1 tracking-wide">{b.title}</div>
-                    <p className="text-[9px] text-white/40 uppercase">{b.sub}</p>
+                    <p className="text-[9px] text-white/40 uppercase">{b.sub || b.subtitle}</p>
                   </div>
                 ))}
               </div>
