@@ -130,19 +130,60 @@ const PackageDetail = () => {
   const duration = packageData?.duration_days ?? 13;
   const departureDate = packageData?.departure_date || "2026-11-19";
   const category = packageData?.category || "Gold";
+  const permitNumber = packageData?.permit_number || "04042300022560003";
+  const airline = packageData?.airline || "Lion Air";
+  const route = packageData?.route || "SUB-JED";
+  const depositAmount = packageData?.deposit_amount ?? 5_000_000;
+  const rawWa = (packageData?.whatsapp_number || DEFAULT_WHATSAPP_NUMBER).toString().replace(/[^0-9]/g, "");
+  const whatsappNumber = rawWa.startsWith("0") ? `62${rawWa.slice(1)}` : rawWa;
+  const whatsappDisplay = packageData?.whatsapp_number || "0811-3107-707";
 
+  const hotelsData = (packageData?.hotels as any) || {};
   const isSilver = /silver/i.test(name);
-  const madinahHotel = isSilver
-    ? { name: "Al Mukhtara Golden", stars: 3, area: "Madinah", note: "/ Setaraf" }
-    : { name: "Al Saha", stars: 4, area: "Madinah", note: "/ Setaraf" };
-  const makkahHotel = isSilver
-    ? { name: "Wahad Ajyad", stars: 3, area: "Makkah", note: "/ Setaraf" }
-    : { name: "Olayan Ajyad", stars: 4, area: "Makkah", note: "/ Setaraf" };
+  const madinahHotel = hotelsData?.madinah?.name ? {
+    name: hotelsData.madinah.name,
+    stars: Number(hotelsData.madinah.stars) || 4,
+    area: "Madinah",
+    note: hotelsData.madinah.note || "/ Setaraf",
+    distance: hotelsData.madinah.distance || "± 50m ke Masjid Nabawi",
+    image: hotelsData.madinah.image || hotelRoom,
+  } : {
+    ...(isSilver
+      ? { name: "Al Mukhtara Golden", stars: 3 }
+      : { name: "Al Saha", stars: 4 }),
+    area: "Madinah",
+    note: "/ Setaraf",
+    distance: "± 50m ke Masjid Nabawi",
+    image: hotelRoom,
+  };
+  const makkahHotel = hotelsData?.makkah?.name ? {
+    name: hotelsData.makkah.name,
+    stars: Number(hotelsData.makkah.stars) || 4,
+    area: "Makkah",
+    note: hotelsData.makkah.note || "/ Setaraf",
+    distance: hotelsData.makkah.distance || "± Kawasan Ajyad, dekat Masjidil Haram",
+    image: hotelsData.makkah.image || Jeddah,
+  } : {
+    ...(isSilver
+      ? { name: "Wahad Ajyad", stars: 3 }
+      : { name: "Olayan Ajyad", stars: 4 }),
+    area: "Makkah",
+    note: "/ Setaraf",
+    distance: "± Kawasan Ajyad, dekat Masjidil Haram",
+    image: Jeddah,
+  };
+
+  const defaultTrustBadges = [
+    { title: "KEMENAG", sub: "Terakreditasi" },
+    { title: "5 PASTI", sub: "Umroh Resmi" },
+    { title: "SISKOPATUH", sub: "Terdaftar" },
+  ];
+  const trustBadges = (packageData?.trust_badges as any[])?.length ? (packageData?.trust_badges as any[]) : defaultTrustBadges;
 
   const bookingMessage = encodeURIComponent(
     `Assalamualaikum, saya tertarik dengan ${name} keberangkatan ${formatDate(departureDate)}. Mohon info lebih lanjut.`
   );
-  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${bookingMessage}`;
+  const waUrl = `https://wa.me/${whatsappNumber}?text=${bookingMessage}`;
 
   const totalBreakdown = Object.values(reviewStats.breakdown || {}).reduce((s: number, v: any) => s + Number(v), 0) as number;
 
