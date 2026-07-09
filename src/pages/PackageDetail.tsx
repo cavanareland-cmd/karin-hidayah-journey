@@ -444,7 +444,7 @@ const PackageDetail = () => {
                     <span className="flex items-center gap-2 text-sm text-white/60">
                       <Plane className="w-4 h-4 text-accent" /> Maskapai
                     </span>
-                    <span className="font-semibold text-white text-sm">Lion Air · SUB-JED</span>
+                    <span className="font-semibold text-white text-sm">{airline} · {route}</span>
                   </div>
                   <div className="flex items-center justify-between py-2.5 border-b border-white/10">
                     <span className="flex items-center gap-2 text-sm text-white/60">
