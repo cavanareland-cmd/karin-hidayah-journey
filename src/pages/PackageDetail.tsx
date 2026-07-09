@@ -259,10 +259,7 @@ const PackageDetail = () => {
                 <div className="h-px bg-gradient-to-r from-accent/40 to-transparent flex-grow" />
               </div>
               <div className="grid md:grid-cols-2 gap-6">
-                {[
-                  { ...madinahHotel, image: hotelRoom, distance: "± 50m ke Masjid Nabawi" },
-                  { ...makkahHotel, image: Jeddah, distance: "± Kawasan Ajyad, dekat Masjidil Haram" },
-                ].map((h, i) => (
+                {[madinahHotel, makkahHotel].map((h, i) => (
                   <article key={i} className="group bg-secondary/60 backdrop-blur border-l-4 border-accent rounded-r-xl overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
                     <div className="aspect-video overflow-hidden relative">
                       <img src={h.image} alt={h.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
