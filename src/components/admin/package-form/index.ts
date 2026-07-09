@@ -6,3 +6,4 @@ export { default as GalleryForm } from "./GalleryForm";
 export { default as AgentForm } from "./AgentForm";
 export { default as CTAForm } from "./CTAForm";
 export { default as RelatedPackagesForm } from "./RelatedPackagesForm";
+export { default as DetailInfoForm } from "./DetailInfoForm";

@@ -317,10 +317,12 @@ export type Database = {
       hajj_packages: {
         Row: {
           agent_info: Json | null
+          airline: string | null
           category: string
           created_at: string
           cta_section: Json | null
           departure_year: number | null
+          deposit_amount: number | null
           description: string | null
           duration_days: number
           facilities: Json | null
@@ -328,6 +330,7 @@ export type Database = {
           gallery_images: Json | null
           gallery_section: Json | null
           hero_image: string | null
+          hotels: Json | null
           id: string
           image_url: string | null
           is_active: boolean
@@ -336,21 +339,27 @@ export type Database = {
           location_text: string | null
           name: string
           period_text: string | null
+          permit_number: string | null
           price: number
           related_packages: Json | null
           review_stats: Json | null
           reviews_data: Json | null
+          route: string | null
           subtitle: string | null
+          trust_badges: Json | null
           updated_at: string
           visa_type: string | null
           waiting_period: string | null
+          whatsapp_number: string | null
         }
         Insert: {
           agent_info?: Json | null
+          airline?: string | null
           category?: string
           created_at?: string
           cta_section?: Json | null
           departure_year?: number | null
+          deposit_amount?: number | null
           description?: string | null
           duration_days: number
           facilities?: Json | null
@@ -358,6 +367,7 @@ export type Database = {
           gallery_images?: Json | null
           gallery_section?: Json | null
           hero_image?: string | null
+          hotels?: Json | null
           id?: string
           image_url?: string | null
           is_active?: boolean
@@ -366,21 +376,27 @@ export type Database = {
           location_text?: string | null
           name: string
           period_text?: string | null
+          permit_number?: string | null
           price: number
           related_packages?: Json | null
           review_stats?: Json | null
           reviews_data?: Json | null
+          route?: string | null
           subtitle?: string | null
+          trust_badges?: Json | null
           updated_at?: string
           visa_type?: string | null
           waiting_period?: string | null
+          whatsapp_number?: string | null
         }
         Update: {
           agent_info?: Json | null
+          airline?: string | null
           category?: string
           created_at?: string
           cta_section?: Json | null
           departure_year?: number | null
+          deposit_amount?: number | null
           description?: string | null
           duration_days?: number
           facilities?: Json | null
@@ -388,6 +404,7 @@ export type Database = {
           gallery_images?: Json | null
           gallery_section?: Json | null
           hero_image?: string | null
+          hotels?: Json | null
           id?: string
           image_url?: string | null
           is_active?: boolean
@@ -396,14 +413,18 @@ export type Database = {
           location_text?: string | null
           name?: string
           period_text?: string | null
+          permit_number?: string | null
           price?: number
           related_packages?: Json | null
           review_stats?: Json | null
           reviews_data?: Json | null
+          route?: string | null
           subtitle?: string | null
+          trust_badges?: Json | null
           updated_at?: string
           visa_type?: string | null
           waiting_period?: string | null
+          whatsapp_number?: string | null
         }
         Relationships: []
       }
@@ -775,10 +796,12 @@ export type Database = {
       umrah_packages: {
         Row: {
           agent_info: Json | null
+          airline: string | null
           category: string
           created_at: string
           cta_section: Json | null
           departure_date: string | null
+          deposit_amount: number | null
           description: string | null
           duration_days: number
           facilities: Json | null
@@ -786,6 +809,7 @@ export type Database = {
           gallery_images: Json | null
           gallery_section: Json | null
           hero_image: string | null
+          hotels: Json | null
           id: string
           image_url: string | null
           is_active: boolean
@@ -794,21 +818,27 @@ export type Database = {
           location_text: string | null
           name: string
           period_text: string | null
+          permit_number: string | null
           price: number
           rating: number | null
           related_packages: Json | null
           review_stats: Json | null
           reviews_data: Json | null
+          route: string | null
           subtitle: string | null
           total_reviews: number | null
+          trust_badges: Json | null
           updated_at: string
+          whatsapp_number: string | null
         }
         Insert: {
           agent_info?: Json | null
+          airline?: string | null
           category?: string
           created_at?: string
           cta_section?: Json | null
           departure_date?: string | null
+          deposit_amount?: number | null
           description?: string | null
           duration_days: number
           facilities?: Json | null
@@ -816,6 +846,7 @@ export type Database = {
           gallery_images?: Json | null
           gallery_section?: Json | null
           hero_image?: string | null
+          hotels?: Json | null
           id?: string
           image_url?: string | null
           is_active?: boolean
@@ -824,21 +855,27 @@ export type Database = {
           location_text?: string | null
           name: string
           period_text?: string | null
+          permit_number?: string | null
           price: number
           rating?: number | null
           related_packages?: Json | null
           review_stats?: Json | null
           reviews_data?: Json | null
+          route?: string | null
           subtitle?: string | null
           total_reviews?: number | null
+          trust_badges?: Json | null
           updated_at?: string
+          whatsapp_number?: string | null
         }
         Update: {
           agent_info?: Json | null
+          airline?: string | null
           category?: string
           created_at?: string
           cta_section?: Json | null
           departure_date?: string | null
+          deposit_amount?: number | null
           description?: string | null
           duration_days?: number
           facilities?: Json | null
@@ -846,6 +883,7 @@ export type Database = {
           gallery_images?: Json | null
           gallery_section?: Json | null
           hero_image?: string | null
+          hotels?: Json | null
           id?: string
           image_url?: string | null
           is_active?: boolean
@@ -854,14 +892,18 @@ export type Database = {
           location_text?: string | null
           name?: string
           period_text?: string | null
+          permit_number?: string | null
           price?: number
           rating?: number | null
           related_packages?: Json | null
           review_stats?: Json | null
           reviews_data?: Json | null
+          route?: string | null
           subtitle?: string | null
           total_reviews?: number | null
+          trust_badges?: Json | null
           updated_at?: string
+          whatsapp_number?: string | null
         }
         Relationships: []
       }

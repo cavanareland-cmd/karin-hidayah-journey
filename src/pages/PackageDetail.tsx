@@ -22,8 +22,7 @@ const iconMap: Record<string, any> = {
 };
 const getIcon = (n: string) => iconMap[n] || Check;
 
-const WHATSAPP_NUMBER = "6281131077070";
-const WHATSAPP_DISPLAY = "0811-3107-707";
+const DEFAULT_WHATSAPP_NUMBER = "6281131077070";
 
 const defaultItinerary = [
   { day: 1, title: "Keberangkatan Surabaya → Jeddah", description: "Berkumpul di Bandara Juanda T2. Briefing manasik terakhir dan proses imigrasi menuju Jeddah bersama muthawwif." },
@@ -131,19 +130,60 @@ const PackageDetail = () => {
   const duration = packageData?.duration_days ?? 13;
   const departureDate = packageData?.departure_date || "2026-11-19";
   const category = packageData?.category || "Gold";
+  const permitNumber = packageData?.permit_number || "04042300022560003";
+  const airline = packageData?.airline || "Lion Air";
+  const route = packageData?.route || "SUB-JED";
+  const depositAmount = packageData?.deposit_amount ?? 5_000_000;
+  const rawWa = (packageData?.whatsapp_number || DEFAULT_WHATSAPP_NUMBER).toString().replace(/[^0-9]/g, "");
+  const whatsappNumber = rawWa.startsWith("0") ? `62${rawWa.slice(1)}` : rawWa;
+  const whatsappDisplay = packageData?.whatsapp_number || "0811-3107-707";
 
+  const hotelsData = (packageData?.hotels as any) || {};
   const isSilver = /silver/i.test(name);
-  const madinahHotel = isSilver
-    ? { name: "Al Mukhtara Golden", stars: 3, area: "Madinah", note: "/ Setaraf" }
-    : { name: "Al Saha", stars: 4, area: "Madinah", note: "/ Setaraf" };
-  const makkahHotel = isSilver
-    ? { name: "Wahad Ajyad", stars: 3, area: "Makkah", note: "/ Setaraf" }
-    : { name: "Olayan Ajyad", stars: 4, area: "Makkah", note: "/ Setaraf" };
+  const madinahHotel = hotelsData?.madinah?.name ? {
+    name: hotelsData.madinah.name,
+    stars: Number(hotelsData.madinah.stars) || 4,
+    area: "Madinah",
+    note: hotelsData.madinah.note || "/ Setaraf",
+    distance: hotelsData.madinah.distance || "± 50m ke Masjid Nabawi",
+    image: hotelsData.madinah.image || hotelRoom,
+  } : {
+    ...(isSilver
+      ? { name: "Al Mukhtara Golden", stars: 3 }
+      : { name: "Al Saha", stars: 4 }),
+    area: "Madinah",
+    note: "/ Setaraf",
+    distance: "± 50m ke Masjid Nabawi",
+    image: hotelRoom,
+  };
+  const makkahHotel = hotelsData?.makkah?.name ? {
+    name: hotelsData.makkah.name,
+    stars: Number(hotelsData.makkah.stars) || 4,
+    area: "Makkah",
+    note: hotelsData.makkah.note || "/ Setaraf",
+    distance: hotelsData.makkah.distance || "± Kawasan Ajyad, dekat Masjidil Haram",
+    image: hotelsData.makkah.image || Jeddah,
+  } : {
+    ...(isSilver
+      ? { name: "Wahad Ajyad", stars: 3 }
+      : { name: "Olayan Ajyad", stars: 4 }),
+    area: "Makkah",
+    note: "/ Setaraf",
+    distance: "± Kawasan Ajyad, dekat Masjidil Haram",
+    image: Jeddah,
+  };
+
+  const defaultTrustBadges = [
+    { title: "KEMENAG", sub: "Terakreditasi" },
+    { title: "5 PASTI", sub: "Umroh Resmi" },
+    { title: "SISKOPATUH", sub: "Terdaftar" },
+  ];
+  const trustBadges = (packageData?.trust_badges as any[])?.length ? (packageData?.trust_badges as any[]) : defaultTrustBadges;
 
   const bookingMessage = encodeURIComponent(
     `Assalamualaikum, saya tertarik dengan ${name} keberangkatan ${formatDate(departureDate)}. Mohon info lebih lanjut.`
   );
-  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${bookingMessage}`;
+  const waUrl = `https://wa.me/${whatsappNumber}?text=${bookingMessage}`;
 
   const totalBreakdown = Object.values(reviewStats.breakdown || {}).reduce((s: number, v: any) => s + Number(v), 0) as number;
 
@@ -164,7 +204,7 @@ const PackageDetail = () => {
         </span>
         <span className="flex flex-col leading-none">
           <span className="text-[9px] uppercase tracking-widest opacity-80">WhatsApp 24/7</span>
-          <span className="font-bold text-sm mt-0.5">{WHATSAPP_DISPLAY}</span>
+          <span className="font-bold text-sm mt-0.5">{whatsappDisplay}</span>
         </span>
       </a>
 
@@ -181,7 +221,7 @@ const PackageDetail = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/40 to-secondary/10" />
                 <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8">
                   <span className="inline-block px-3 py-1 bg-primary text-white text-[10px] tracking-widest font-bold uppercase mb-3 border border-accent/60 rounded-sm">
-                    Izin PPIU · 04042300022560003
+                    Izin PPIU · {permitNumber}
                   </span>
                   <h1 className="font-['DM_Serif_Display'] text-3xl md:text-5xl lg:text-6xl leading-none text-accent">
                     {name}
@@ -194,10 +234,10 @@ const PackageDetail = () => {
               <div className="grid grid-cols-2 md:grid-cols-5 gap-px bg-accent/20 border border-accent/20 mt-6 rounded-lg overflow-hidden">
                 {[
                   { label: "Durasi", value: `${duration} HARI` },
-                  { label: "Maskapai", value: "LION AIR" },
-                  { label: "Rute", value: "SUB-JED" },
-                  { label: "Deposit", value: "RP 5 JUTA", accent: true },
-                  { label: "Berangkat", value: "19 NOV" },
+                  { label: "Maskapai", value: airline.toUpperCase() },
+                  { label: "Rute", value: route.toUpperCase() },
+                  { label: "Deposit", value: `RP ${(depositAmount / 1_000_000).toFixed(0)} JUTA`, accent: true },
+                  { label: "Berangkat", value: new Date(departureDate).toLocaleDateString("id-ID", { day: "numeric", month: "short" }).toUpperCase() },
                 ].map((m, i) => (
                   <div key={i} className="bg-secondary/80 backdrop-blur p-4 text-center">
                     <p className="text-[9px] uppercase tracking-[0.2em] text-accent mb-1">{m.label}</p>
@@ -219,10 +259,7 @@ const PackageDetail = () => {
                 <div className="h-px bg-gradient-to-r from-accent/40 to-transparent flex-grow" />
               </div>
               <div className="grid md:grid-cols-2 gap-6">
-                {[
-                  { ...madinahHotel, image: hotelRoom, distance: "± 50m ke Masjid Nabawi" },
-                  { ...makkahHotel, image: Jeddah, distance: "± Kawasan Ajyad, dekat Masjidil Haram" },
-                ].map((h, i) => (
+                {[madinahHotel, makkahHotel].map((h, i) => (
                   <article key={i} className="group bg-secondary/60 backdrop-blur border-l-4 border-accent rounded-r-xl overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
                     <div className="aspect-video overflow-hidden relative">
                       <img src={h.image} alt={h.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -407,13 +444,13 @@ const PackageDetail = () => {
                     <span className="flex items-center gap-2 text-sm text-white/60">
                       <Plane className="w-4 h-4 text-accent" /> Maskapai
                     </span>
-                    <span className="font-semibold text-white text-sm">Lion Air · SUB-JED</span>
+                    <span className="font-semibold text-white text-sm">{airline} · {route}</span>
                   </div>
                   <div className="flex items-center justify-between py-2.5 border-b border-white/10">
                     <span className="flex items-center gap-2 text-sm text-white/60">
                       <Ticket className="w-4 h-4 text-accent" /> DP Booking
                     </span>
-                    <span className="font-bold text-accent text-sm">Rp 5.000.000</span>
+                    <span className="font-bold text-accent text-sm">Rp {new Intl.NumberFormat("id-ID").format(depositAmount)}</span>
                   </div>
                   <div className="flex items-center justify-between py-2.5">
                     <span className="text-sm text-white/60">Sisa Kursi</span>
@@ -443,14 +480,10 @@ const PackageDetail = () => {
 
               {/* Trust Badges */}
               <div className="grid grid-cols-3 gap-2">
-                {[
-                  { title: "KEMENAG", sub: "Terakreditasi" },
-                  { title: "5 PASTI", sub: "Umroh Resmi" },
-                  { title: "SISKOPATUH", sub: "Terdaftar" },
-                ].map((b, i) => (
+                {trustBadges.slice(0, 3).map((b: any, i: number) => (
                   <div key={i} className="bg-secondary/60 p-3 text-center border border-accent/10 rounded-lg">
                     <div className="text-accent font-bold text-[11px] mb-1 tracking-wide">{b.title}</div>
-                    <p className="text-[9px] text-white/40 uppercase">{b.sub}</p>
+                    <p className="text-[9px] text-white/40 uppercase">{b.sub || b.subtitle}</p>
                   </div>
                 ))}
               </div>

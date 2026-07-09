@@ -36,6 +36,7 @@ import {
   AgentForm,
   CTAForm,
   RelatedPackagesForm,
+  DetailInfoForm,
 } from "@/components/admin/package-form";
 
 interface UmrahPackage {
@@ -118,6 +119,13 @@ const AdminUmrahPackages = () => {
         is_active: formData.is_active,
         rating: parseFloat(formData.rating) || 5.0,
         total_reviews: parseInt(formData.total_reviews) || 0,
+        permit_number: formData.permit_number || null,
+        airline: formData.airline || null,
+        route: formData.route || null,
+        deposit_amount: formData.deposit_amount ? parseFloat(formData.deposit_amount) : null,
+        whatsapp_number: formData.whatsapp_number || null,
+        hotels: JSON.parse(JSON.stringify(formData.hotels)),
+        trust_badges: JSON.parse(JSON.stringify(formData.trust_badges)),
         itinerary: JSON.parse(JSON.stringify(formData.itinerary)),
         facilities: JSON.parse(JSON.stringify(formData.facilities)),
         facilities_not_included: JSON.parse(JSON.stringify(formData.facilities_not_included)),
@@ -175,6 +183,13 @@ const AdminUmrahPackages = () => {
       is_active: pkg.is_active,
       rating: pkg.rating?.toString() || "5.0",
       total_reviews: pkg.total_reviews?.toString() || "0",
+      permit_number: (pkg as any).permit_number || "",
+      airline: (pkg as any).airline || "Lion Air",
+      route: (pkg as any).route || "SUB-JED",
+      deposit_amount: (pkg as any).deposit_amount?.toString() || "5000000",
+      whatsapp_number: (pkg as any).whatsapp_number || "",
+      hotels: (pkg as any).hotels && (pkg as any).hotels.madinah ? (pkg as any).hotels : defaultFormData.hotels,
+      trust_badges: (pkg as any).trust_badges?.length ? (pkg as any).trust_badges : defaultFormData.trust_badges,
       itinerary: pkg.itinerary || [],
       facilities: pkg.facilities || [],
       facilities_not_included: pkg.facilities_not_included || [],
@@ -245,8 +260,9 @@ const AdminUmrahPackages = () => {
               </DialogHeader>
               <form onSubmit={handleSubmit}>
                 <Tabs defaultValue="basic" className="w-full">
-                  <TabsList className="grid w-full grid-cols-7 mb-4">
+                  <TabsList className="grid w-full grid-cols-8 mb-4">
                     <TabsTrigger value="basic" className="text-xs">Info Dasar</TabsTrigger>
+                    <TabsTrigger value="detail" className="text-xs">Detail</TabsTrigger>
                     <TabsTrigger value="itinerary" className="text-xs">Itinerary</TabsTrigger>
                     <TabsTrigger value="facilities" className="text-xs">Fasilitas</TabsTrigger>
                     <TabsTrigger value="reviews" className="text-xs">Reviews</TabsTrigger>
@@ -397,6 +413,21 @@ const AdminUmrahPackages = () => {
                       </div>
                     </div>
                   </TabsContent>
+
+                  {/* Detail Tab */}
+                  <TabsContent value="detail">
+                    <DetailInfoForm
+                      permitNumber={formData.permit_number}
+                      airline={formData.airline}
+                      route={formData.route}
+                      depositAmount={formData.deposit_amount}
+                      whatsappNumber={formData.whatsapp_number}
+                      hotels={formData.hotels}
+                      trustBadges={formData.trust_badges}
+                      onChange={(patch) => setFormData({ ...formData, ...patch } as any)}
+                    />
+                  </TabsContent>
+
 
                   {/* Itinerary Tab */}
                   <TabsContent value="itinerary">

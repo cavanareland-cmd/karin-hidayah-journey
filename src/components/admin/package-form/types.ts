@@ -84,6 +84,19 @@ export interface CTASection {
   button_link: string;
 }
 
+export interface HotelInfo {
+  name: string;
+  stars: number;
+  distance: string;
+  image: string;
+  note?: string;
+}
+
+export interface TrustBadge {
+  title: string;
+  sub: string;
+}
+
 export interface PackageFormData {
   // Basic info
   name: string;
@@ -101,6 +114,15 @@ export interface PackageFormData {
   is_active: boolean;
   rating: string;
   total_reviews: string;
+
+  // Detail info (new)
+  permit_number: string;
+  airline: string;
+  route: string;
+  deposit_amount: string;
+  whatsapp_number: string;
+  hotels: { madinah: HotelInfo; makkah: HotelInfo };
+  trust_badges: TrustBadge[];
   
   // Complex fields
   itinerary: ItineraryDay[];
@@ -131,6 +153,20 @@ export const defaultFormData: PackageFormData = {
   is_active: true,
   rating: "5.0",
   total_reviews: "0",
+  permit_number: "",
+  airline: "Lion Air",
+  route: "SUB-JED",
+  deposit_amount: "5000000",
+  whatsapp_number: "",
+  hotels: {
+    madinah: { name: "", stars: 4, distance: "", image: "", note: "/ Setaraf" },
+    makkah: { name: "", stars: 4, distance: "", image: "", note: "/ Setaraf" },
+  },
+  trust_badges: [
+    { title: "KEMENAG", sub: "Terakreditasi" },
+    { title: "5 PASTI", sub: "Umroh Resmi" },
+    { title: "SISKOPATUH", sub: "Terdaftar" },
+  ],
   itinerary: [],
   facilities: [],
   facilities_not_included: [],
