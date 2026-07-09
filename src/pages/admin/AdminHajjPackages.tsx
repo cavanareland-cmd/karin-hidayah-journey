@@ -275,8 +275,9 @@ const AdminHajjPackages = () => {
               </DialogHeader>
               <form onSubmit={handleSubmit}>
                 <Tabs defaultValue="basic" className="w-full">
-                  <TabsList className="grid w-full grid-cols-7 mb-4">
+                  <TabsList className="grid w-full grid-cols-8 mb-4">
                     <TabsTrigger value="basic" className="text-xs">Info Dasar</TabsTrigger>
+                    <TabsTrigger value="detail" className="text-xs">Detail</TabsTrigger>
                     <TabsTrigger value="itinerary" className="text-xs">Itinerary</TabsTrigger>
                     <TabsTrigger value="facilities" className="text-xs">Fasilitas</TabsTrigger>
                     <TabsTrigger value="reviews" className="text-xs">Reviews</TabsTrigger>
