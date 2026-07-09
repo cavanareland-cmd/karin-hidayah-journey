@@ -36,6 +36,7 @@ import {
   AgentForm,
   CTAForm,
   RelatedPackagesForm,
+  DetailInfoForm,
 } from "@/components/admin/package-form";
 
 interface UmrahPackage {
