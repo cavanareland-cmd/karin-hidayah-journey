@@ -204,7 +204,7 @@ const PackageDetail = () => {
         </span>
         <span className="flex flex-col leading-none">
           <span className="text-[9px] uppercase tracking-widest opacity-80">WhatsApp 24/7</span>
-          <span className="font-bold text-sm mt-0.5">{WHATSAPP_DISPLAY}</span>
+          <span className="font-bold text-sm mt-0.5">{whatsappDisplay}</span>
         </span>
       </a>
 
