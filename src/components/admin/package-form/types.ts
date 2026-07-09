@@ -84,6 +84,19 @@ export interface CTASection {
   button_link: string;
 }
 
+export interface HotelInfo {
+  name: string;
+  stars: number;
+  distance: string;
+  image: string;
+  note?: string;
+}
+
+export interface TrustBadge {
+  title: string;
+  sub: string;
+}
+
 export interface PackageFormData {
   // Basic info
   name: string;
@@ -101,6 +114,15 @@ export interface PackageFormData {
   is_active: boolean;
   rating: string;
   total_reviews: string;
+
+  // Detail info (new)
+  permit_number: string;
+  airline: string;
+  route: string;
+  deposit_amount: string;
+  whatsapp_number: string;
+  hotels: { madinah: HotelInfo; makkah: HotelInfo };
+  trust_badges: TrustBadge[];
   
   // Complex fields
   itinerary: ItineraryDay[];
