@@ -414,6 +414,21 @@ const AdminUmrahPackages = () => {
                     </div>
                   </TabsContent>
 
+                  {/* Detail Tab */}
+                  <TabsContent value="detail">
+                    <DetailInfoForm
+                      permitNumber={formData.permit_number}
+                      airline={formData.airline}
+                      route={formData.route}
+                      depositAmount={formData.deposit_amount}
+                      whatsappNumber={formData.whatsapp_number}
+                      hotels={formData.hotels}
+                      trustBadges={formData.trust_badges}
+                      onChange={(patch) => setFormData({ ...formData, ...patch } as any)}
+                    />
+                  </TabsContent>
+
+
                   {/* Itinerary Tab */}
                   <TabsContent value="itinerary">
                     <ItineraryForm
