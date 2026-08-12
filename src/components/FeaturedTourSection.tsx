@@ -6,7 +6,8 @@ import featuredImg from "@/assets/destination-featured.jpg";
 
 const FeaturedTourSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const { data: packages, isLoading } = useUmrahPackages(true);
+  // Sumber data sama dengan /umrah-packages (semua paket aktif)
+  const { data: packages, isLoading } = useUmrahPackages();
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("id-ID", {
