@@ -130,10 +130,20 @@ const UmrahPackages = () => {
       {/* Packages Grid */}
       <section className="py-8 px-4 lg:px-8">
         <div className="container mx-auto">
-          <div className="mb-6">
-            <p className="text-muted-foreground">
-              Menampilkan <span className="font-semibold text-foreground">{sortedPackages.length}</span> paket umrah
-            </p>
+          <div className="mb-6 flex items-center justify-between gap-4">
+            {isLoading ? (
+              <Skeleton className="h-5 w-48" />
+            ) : (
+              <p className="text-muted-foreground">
+                Menampilkan <span className="font-semibold text-foreground">{isError ? 0 : sortedPackages.length}</span> paket umrah
+              </p>
+            )}
+            {!isLoading && isFetching && (
+              <span className="flex items-center gap-2 text-xs text-muted-foreground">
+                <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                Memperbarui...
+              </span>
+            )}
           </div>
 
           {isLoading ? (
@@ -150,9 +160,52 @@ const UmrahPackages = () => {
                 </div>
               ))}
             </div>
+          ) : isError ? (
+            <div className="max-w-md mx-auto text-center py-16 px-6 bg-card border border-destructive/30 rounded-2xl">
+              <AlertTriangle className="w-12 h-12 text-destructive mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-2">Gagal memuat data paket</h3>
+              <p className="text-muted-foreground mb-6">
+                Koneksi ke server bermasalah. Periksa jaringan Anda lalu coba muat ulang.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Button onClick={() => refetch()} disabled={isFetching} className="gap-2">
+                  <RefreshCw className={`w-4 h-4 ${isFetching ? "animate-spin" : ""}`} />
+                  Coba Lagi
+                </Button>
+                <a
+                  href={`https://wa.me/${whatsappNumber}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-5 py-2.5 rounded-md border border-border text-sm font-medium hover:bg-muted transition-colors"
+                >
+                  Tanya via WhatsApp
+                </a>
+              </div>
+            </div>
           ) : sortedPackages.length === 0 ? (
-            <div className="text-center py-16">
-              <p className="text-muted-foreground text-lg">Belum ada paket umrah yang tersedia</p>
+            <div className="max-w-md mx-auto text-center py-16 px-6 bg-card border border-border rounded-2xl">
+              <PackageOpen className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-2">
+                {activeCategory === "all" ? "Belum ada paket tersedia" : "Tidak ada paket di kategori ini"}
+              </h3>
+              <p className="text-muted-foreground mb-6">
+                {activeCategory === "all"
+                  ? "Paket terbaru sedang kami siapkan. Hubungi kami untuk info jadwal keberangkatan."
+                  : "Coba pilih kategori lain atau lihat semua paket yang tersedia."}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                {activeCategory !== "all" && (
+                  <Button onClick={() => setActiveCategory("all")}>Lihat Semua Paket</Button>
+                )}
+                <a
+                  href={`https://wa.me/${whatsappNumber}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-5 py-2.5 rounded-md border border-border text-sm font-medium hover:bg-muted transition-colors"
+                >
+                  Tanya via WhatsApp
+                </a>
+              </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
