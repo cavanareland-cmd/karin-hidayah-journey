@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { Skeleton } from "@/components/ui/skeleton";
+import { PackageCardSkeletonGrid } from "@/components/PackageCardSkeleton";
+
 import { Button } from "@/components/ui/button";
 import { useUmrahPackages, useSiteSettings } from "@/hooks/useSupabaseData";
 import makkahImg from "@/assets/makkah-landscape.jpg";
@@ -18,6 +20,17 @@ const categories = [
   { id: "Plus", label: "Umrah Plus" },
   { id: "VIP", label: "VIP" },
 ];
+
+// Perkiraan jumlah kartu per kategori agar skeleton tidak "melompat" saat data masuk
+const SKELETON_COUNT: Record<string, number> = {
+  all: 6,
+  Regular: 3,
+  Premium: 3,
+  Ramadhan: 2,
+  Plus: 2,
+  VIP: 2,
+};
+
 
 const UmrahPackages = () => {
   const [activeCategory, setActiveCategory] = useState("all");
