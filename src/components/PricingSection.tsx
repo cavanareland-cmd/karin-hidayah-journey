@@ -24,7 +24,10 @@ const formatDate = (dateString: string | null) => {
 const PricingSection = () => {
   const { data: packages, isLoading } = useUmrahPackages();
 
-  const displayPackages = (packages || []).slice(0, 3);
+  // Urutan sama dengan halaman /umrah-packages (default: paling populer)
+  const displayPackages = [...(packages || [])]
+    .sort((a, b) => (b.total_reviews || 0) - (a.total_reviews || 0))
+    .slice(0, 3);
 
   return (
     <section className="py-16 px-4 lg:px-8 bg-muted/30">
