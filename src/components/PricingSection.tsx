@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Calendar, Plane, Users, MapPin, Star, ArrowRight, AlertTriangle, PackageOpen, RefreshCw } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
+import { PackageCardSkeletonGrid } from "@/components/PackageCardSkeleton";
 import { Button } from "@/components/ui/button";
 import { useUmrahPackages } from "@/hooks/useSupabaseData";
 import umrahImg from "@/assets/umrah-package.jpg";
