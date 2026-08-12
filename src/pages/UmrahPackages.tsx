@@ -22,7 +22,7 @@ const categories = [
 const UmrahPackages = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [sortBy, setSortBy] = useState("popular");
-  const { data: packages, isLoading } = useUmrahPackages();
+  const { data: packages, isLoading, isError, refetch, isFetching } = useUmrahPackages();
   const { data: settings } = useSiteSettings();
 
   const whatsappNumber = settings?.whatsapp_number || "6281234567890";
