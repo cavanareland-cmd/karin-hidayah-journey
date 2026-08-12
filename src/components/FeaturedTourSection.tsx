@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useUmrahPackages } from "@/hooks/useSupabaseData";
 import { Skeleton } from "@/components/ui/skeleton";
 import featuredImg from "@/assets/destination-featured.jpg";
 
 const FeaturedTourSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const { data: packages, isLoading } = useUmrahPackages(true);
+  // Sumber data sama dengan /umrah-packages (semua paket aktif)
+  const { data: packages, isLoading } = useUmrahPackages();
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -62,12 +64,12 @@ const FeaturedTourSection = () => {
             <p className="text-muted-foreground text-sm md:text-base mb-6 leading-relaxed">
               {featuredPackage.description || `Paket perjalanan umrah ${featuredPackage.duration_days} hari dengan fasilitas terbaik untuk pengalaman ibadah yang sempurna di Tanah Suci.`}
             </p>
-            <a 
-              href={`/package/${featuredPackage.id}`}
+            <Link
+              to={`/package/${featuredPackage.id}`}
               className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-xl font-medium hover:bg-primary/90 transition-colors"
             >
               Lihat Detail
-            </a>
+            </Link>
           </div>
 
           {/* Right Image */}
