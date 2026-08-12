@@ -23,7 +23,7 @@ const formatDate = (dateString: string | null) => {
 };
 
 const PricingSection = () => {
-  const { data: packages, isLoading } = useUmrahPackages();
+  const { data: packages, isLoading, isError, refetch, isFetching } = useUmrahPackages();
 
   // Urutan sama dengan halaman /umrah-packages (default: paling populer)
   const displayPackages = [...(packages || [])]
