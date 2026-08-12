@@ -147,19 +147,8 @@ const UmrahPackages = () => {
           </div>
 
           {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="bg-card rounded-2xl overflow-hidden border border-border">
-                  <Skeleton className="h-52 w-full" />
-                  <div className="p-5 space-y-3">
-                    <Skeleton className="h-6 w-3/4" />
-                    <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-10 w-full" />
-                  </div>
-                </div>
-              ))}
-            </div>
+            <PackageCardSkeletonGrid count={skeletonCount} />
+
           ) : isError ? (
             <div className="max-w-md mx-auto text-center py-16 px-6 bg-card border border-destructive/30 rounded-2xl">
               <AlertTriangle className="w-12 h-12 text-destructive mx-auto mb-4" />
