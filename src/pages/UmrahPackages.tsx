@@ -75,6 +75,11 @@ const UmrahPackages = () => {
     }
   });
 
+  // Jumlah skeleton mengikuti kategori aktif (atau jumlah data yang sudah ada di cache)
+  const skeletonCount = filteredPackages.length || SKELETON_COUNT[activeCategory] || 3;
+
+
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
