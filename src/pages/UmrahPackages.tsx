@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { Skeleton } from "@/components/ui/skeleton";
+import { PackageCardSkeletonGrid } from "@/components/PackageCardSkeleton";
+
 import { Button } from "@/components/ui/button";
 import { useUmrahPackages, useSiteSettings } from "@/hooks/useSupabaseData";
 import makkahImg from "@/assets/makkah-landscape.jpg";
@@ -18,6 +20,17 @@ const categories = [
   { id: "Plus", label: "Umrah Plus" },
   { id: "VIP", label: "VIP" },
 ];
+
+// Perkiraan jumlah kartu per kategori agar skeleton tidak "melompat" saat data masuk
+const SKELETON_COUNT: Record<string, number> = {
+  all: 6,
+  Regular: 3,
+  Premium: 3,
+  Ramadhan: 2,
+  Plus: 2,
+  VIP: 2,
+};
+
 
 const UmrahPackages = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -61,6 +74,11 @@ const UmrahPackages = () => {
         return (b.total_reviews || 0) - (a.total_reviews || 0);
     }
   });
+
+  // Jumlah skeleton mengikuti kategori aktif (atau jumlah data yang sudah ada di cache)
+  const skeletonCount = filteredPackages.length || SKELETON_COUNT[activeCategory] || 3;
+
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -147,19 +165,8 @@ const UmrahPackages = () => {
           </div>
 
           {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="bg-card rounded-2xl overflow-hidden border border-border">
-                  <Skeleton className="h-52 w-full" />
-                  <div className="p-5 space-y-3">
-                    <Skeleton className="h-6 w-3/4" />
-                    <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-10 w-full" />
-                  </div>
-                </div>
-              ))}
-            </div>
+            <PackageCardSkeletonGrid count={skeletonCount} />
+
           ) : isError ? (
             <div className="max-w-md mx-auto text-center py-16 px-6 bg-card border border-destructive/30 rounded-2xl">
               <AlertTriangle className="w-12 h-12 text-destructive mx-auto mb-4" />

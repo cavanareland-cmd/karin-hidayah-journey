@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Calendar, Plane, Users, MapPin, Star, ArrowRight, AlertTriangle, PackageOpen, RefreshCw } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
+import { PackageCardSkeletonGrid } from "@/components/PackageCardSkeleton";
 import { Button } from "@/components/ui/button";
 import { useUmrahPackages } from "@/hooks/useSupabaseData";
 import umrahImg from "@/assets/umrah-package.jpg";
@@ -48,18 +48,8 @@ const PricingSection = () => {
 
         {/* Packages Grid */}
         {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="bg-card rounded-2xl overflow-hidden border border-border">
-                <Skeleton className="h-52 w-full" />
-                <div className="p-5 space-y-3">
-                  <Skeleton className="h-6 w-3/4" />
-                  <Skeleton className="h-4 w-full" />
-                  <Skeleton className="h-10 w-full" />
-                </div>
-              </div>
-            ))}
-          </div>
+          <PackageCardSkeletonGrid count={3} />
+
         ) : isError ? (
           <div className="max-w-md mx-auto text-center py-14 px-6 bg-card border border-destructive/30 rounded-2xl">
             <AlertTriangle className="w-10 h-10 text-destructive mx-auto mb-3" />
