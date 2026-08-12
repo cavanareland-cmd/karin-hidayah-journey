@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { Calendar, Plane, Users, MapPin, Star, ArrowRight } from "lucide-react";
+import { Calendar, Plane, Users, MapPin, Star, ArrowRight, AlertTriangle, PackageOpen, RefreshCw } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
 import { useUmrahPackages } from "@/hooks/useSupabaseData";
 import umrahImg from "@/assets/umrah-package.jpg";
 
@@ -22,7 +23,7 @@ const formatDate = (dateString: string | null) => {
 };
 
 const PricingSection = () => {
-  const { data: packages, isLoading } = useUmrahPackages();
+  const { data: packages, isLoading, isError, refetch, isFetching } = useUmrahPackages();
 
   // Urutan sama dengan halaman /umrah-packages (default: paling populer)
   const displayPackages = [...(packages || [])]
@@ -59,9 +60,32 @@ const PricingSection = () => {
               </div>
             ))}
           </div>
+        ) : isError ? (
+          <div className="max-w-md mx-auto text-center py-14 px-6 bg-card border border-destructive/30 rounded-2xl">
+            <AlertTriangle className="w-10 h-10 text-destructive mx-auto mb-3" />
+            <h3 className="text-lg font-semibold mb-1">Gagal memuat paket</h3>
+            <p className="text-sm text-muted-foreground mb-5">
+              Terjadi kendala saat mengambil data paket. Silakan coba lagi.
+            </p>
+            <Button onClick={() => refetch()} disabled={isFetching} className="gap-2">
+              <RefreshCw className={`w-4 h-4 ${isFetching ? "animate-spin" : ""}`} />
+              Coba Lagi
+            </Button>
+          </div>
         ) : displayPackages.length === 0 ? (
-          <div className="text-center py-16">
-            <p className="text-muted-foreground text-lg">Belum ada paket umrah yang tersedia</p>
+          <div className="max-w-md mx-auto text-center py-14 px-6 bg-card border border-border rounded-2xl">
+            <PackageOpen className="w-10 h-10 text-muted-foreground mx-auto mb-3" />
+            <h3 className="text-lg font-semibold mb-1">Belum ada paket tersedia</h3>
+            <p className="text-sm text-muted-foreground mb-5">
+              Paket terbaru sedang kami siapkan. Hubungi kami untuk informasi jadwal keberangkatan.
+            </p>
+            <Link
+              to="/umrah-packages"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-xl text-sm font-medium hover:bg-primary/90 transition-colors"
+            >
+              Lihat Halaman Paket
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
