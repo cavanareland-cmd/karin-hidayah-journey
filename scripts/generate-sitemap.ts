@@ -49,13 +49,13 @@ async function fetchRows<T>(table: string, query: string): Promise<T[]> {
 }
 
 type PackageRow = { id: string; updated_at?: string | null };
-type CategoryRow = { slug: string; updated_at?: string | null };
+type CategoryRow = { page_key: string; updated_at?: string | null };
 
 async function collectEntries(): Promise<SitemapEntry[]> {
   const [umrah, hajj, categories] = await Promise.all([
     fetchRows<PackageRow>("umrah_packages", "select=id,updated_at&is_active=eq.true&limit=1000"),
     fetchRows<PackageRow>("hajj_packages", "select=id,updated_at&is_active=eq.true&limit=1000"),
-    fetchRows<CategoryRow>("category_pages", "select=slug,updated_at&limit=1000"),
+    fetchRows<CategoryRow>("category_pages", "select=page_key,updated_at&is_active=eq.true&limit=1000"),
   ]);
 
   const packageEntries: SitemapEntry[] = [...umrah, ...hajj].map((row) => ({
@@ -66,7 +66,7 @@ async function collectEntries(): Promise<SitemapEntry[]> {
   }));
 
   const categoryEntries: SitemapEntry[] = categories.map((row) => ({
-    path: `/kategori/${row.slug}`,
+    path: `/kategori/${row.page_key}`,
     lastmod: toDate(row.updated_at),
     changefreq: "monthly",
     priority: "0.8",
